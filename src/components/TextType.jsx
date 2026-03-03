@@ -7,6 +7,7 @@ const TextType = ({
   deletingSpeed = 60,
   pauseDuration = 1500,
   className = "",
+  isDark = false,
 }) => {
   const [displayed, setDisplayed] = useState("");
   const [index, setIndex] = useState(0);
@@ -34,7 +35,10 @@ const TextType = ({
   }, [displayed, isDeleting, index, text, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className={`text-type ${className}`}>
+    <span
+      className={`text-type ${className}`}
+      style={{ color: isDark ? '#ffffff' : '#000000' }}
+    >
       {displayed}
       <span className="text-type-cursor">|</span>
     </span>

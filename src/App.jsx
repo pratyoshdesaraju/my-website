@@ -162,63 +162,25 @@ function Home({ theme }) {
             </BlurText>
           </div>
 
-          <div className="text-2xl mb-6" style={{ display: 'flex', alignItems: 'center' }}>
+          <div className="text-2xl" style={{ display: 'flex', alignItems: 'center', marginBottom: '-0.5rem' }}>
             <span style={{ fontWeight: 400 }}>
-              <BlurText
-                text="I am "
-                delay={40}
-                stepDuration={0.18}
-                animateBy="words"
-                direction="top"
-              />
+              <BlurText text="I am " delay={40} stepDuration={0.18} animateBy="words" direction="top" />
             </span>
             <span style={{ color: '#FDB515', marginLeft: '0.5em', fontWeight: 600 }}>
-              <BlurText
-                text="Pratyosh Desaraju"
-                delay={40}
-                stepDuration={0.18}
-                animateBy="words"
-                direction="top"
-              />
+              <BlurText text="Pratyosh Desaraju" delay={40} stepDuration={0.18} animateBy="words" direction="top" />
             </span>
           </div>
+
           <div className="text-2xl mb-6" style={{ display: 'flex', alignItems: 'center', gap: '0.5em' }}>
-            <span style={{ color: isDark ? '#ffffff' : '#000000', fontWeight: 400 }}>
-              <TextType
-                text={["Engineer", "Programmer", "Team Player"]}
-                typingSpeed={100}
-                deletingSpeed={60}
-                pauseDuration={1500}
-                className="text-2xl"
-              />
-            </span>
+            <TextType
+              text={["Engineer...", "Programmer...", "Team Player..."]}
+              typingSpeed={100}
+              deletingSpeed={60}
+              pauseDuration={1500}
+              className="text-2xl"
+              isDark={isDark}
+            />
           </div>
-          {/* <BlurText
-            text="I am a Senior Engineer at Liberty Mutual Insurance Group."
-            delay={40}
-            stepDuration={0.18}
-            animateBy="words"
-            direction="top"
-            className="text-2xl mb-6"
-          /> */}
-
-          {/* <BlurText
-            text="Check out the work or bio to learn more about me."
-            delay={40}
-            stepDuration={0.18}
-            animateBy="words"
-            direction="top"
-            className="text-2xl mb-6"
-          /> */}
-
-          {/* <BlurText
-            text="You can also connect with me on LinkedIn or read what I have been writing on Medium using the links below."
-            delay={40}
-            stepDuration={0.18}
-            animateBy="words"
-            direction="top"
-            className="text-2xl"
-          /> */}
         </div>
       </div>
 

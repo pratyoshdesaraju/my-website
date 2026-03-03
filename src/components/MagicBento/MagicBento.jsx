@@ -15,63 +15,63 @@ const cardData = [
     label: "Where I work",
     description: "Previously @ The Home Depot"
   },
-  // {
-  //   area: "top-right",
-  //   color: "transparent",
-  //   title: "",
-  //   label: "Memberships/Achievements",
-  //   list: [
-  //     {
-  //       text: "SCRS Fellow (0.5% approval rate)",
-  //       href: "https://scrs.in/scrs-fellow/1226"
-  //     },
-  //     {
-  //       text: "IEEE Senior Member",
-  //       href: "https://ieee-collabratec.ieee.org/app/p/pratyoshdesaraju"
-  //     },
-  //     {
-  //       text: "Claro Awards winner 2025"
-  //     }
-  //   ]
-  // },
-  // {
-  //   area: "bottom-left",
-  //   color: "transparent",
-  //   label: "Research Papers/Conference Papers",
-  //       list: [
-  //     {
-  //       text: "Telematics Transformation: Using Deep Learning to Uncover Driving Trends and Enhance Insurance Models",
-  //       href: "https://doi.org/10.30574/wjaets.2025.15.3.1018"
-  //     },
+  {
+    area: "top-right",
+    color: "transparent",
+    title: "",
+    label: "Memberships/Achievements",
+    list: [
+      {
+        text: "SCRS Fellow (0.5% approval rate)",
+        href: "https://scrs.in/scrs-fellow/1226"
+      },
+      {
+        text: "IEEE Senior Member",
+        href: "https://ieee-collabratec.ieee.org/app/p/pratyoshdesaraju"
+      },
+      {
+        text: "Claro Awards winner 2025"
+      }
+    ]
+  },
+  {
+    area: "bottom-left",
+    color: "transparent",
+    label: "Research Papers/Conference Papers",
+        list: [
+      {
+        text: "Telematics Transformation: Using Deep Learning to Uncover Driving Trends and Enhance Insurance Models",
+        href: "https://doi.org/10.30574/wjaets.2025.15.3.1018"
+      },
 
-  //     {
-  //       text: "A Hybrid Cloud Architecture with Intrusion Detection and Prevention Capabilities for Disaster Recovery",
-  //       href: "https://doi.org/10.1109/ICETM63734.2025.11051927"
-  //     }
-  //   ]
-  // },
-  // {
-  //   area: "bottom-right",
-  //   color: "transparent",
-  //   label: "My Patents",
-  //   secondaryLabel: "Book I published",
-  //   list: [
-  //     {
-  //       text: "Automated Legacy Enhancement Platform Utilizing Adaptive AI",
-  //       href: "https://register.dpma.de/DPMAregister/pat/register?AKZ=2020251024314&CURSOR=0#verf-detail-table_1"
-  //     },
-  //     {
-  //       text: "Deep Learning Driven Performance Anomaly Detection Platform",
-  //       href:"https://register.dpma.de/DPMAregister/pat/register?AKZ=2020251024322&CURSOR=1"
-  //     }
-  //   ],
-  //   bookList: [
-  //     {
-  //       text: "ISBN: 9789367884188 Obsolete to Optimal: How AI can transform aging U.S. enterprise systems in Insurance and Retail",
-  //       href: "https://isbnsearch.org/isbn/9789367884188"
-  //     }
-  //   ]
-  // }
+      {
+        text: "A Hybrid Cloud Architecture with Intrusion Detection and Prevention Capabilities for Disaster Recovery",
+        href: "https://doi.org/10.1109/ICETM63734.2025.11051927"
+      }
+    ]
+  },
+  {
+    area: "bottom-right",
+    color: "transparent",
+    label: "My Patents",
+    secondaryLabel: "Book I published",
+    list: [
+      {
+        text: "Automated Legacy Enhancement Platform Utilizing Adaptive AI",
+        href: "https://register.dpma.de/DPMAregister/pat/register?AKZ=2020251024314&CURSOR=0#verf-detail-table_1"
+      },
+      {
+        text: "Deep Learning Driven Performance Anomaly Detection Platform",
+        href:"https://register.dpma.de/DPMAregister/pat/register?AKZ=2020251024322&CURSOR=1"
+      }
+    ],
+    bookList: [
+      {
+        text: "ISBN: 9789367884188 Obsolete to Optimal: How AI can transform aging U.S. enterprise systems in Insurance and Retail",
+        href: "https://isbnsearch.org/isbn/9789367884188"
+      }
+    ]
+  }
 ];
 
 const createParticleElement = (x, y, color = DEFAULT_GLOW_COLOR) => {
