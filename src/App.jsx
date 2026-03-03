@@ -9,6 +9,7 @@ import { MdOutlineAlternateEmail } from 'react-icons/md';
 import Footer from './components/Footer';
 import ProfileCard from './components/ProfileCard/ProfileCard.jsx';
 import BlurText from './components/BlurText.jsx';
+import TextType from './components/TextType';
 import Work from './pages/Work';
 import Bio from './pages/Bio';
 import Contact from './pages/Contact';
@@ -181,15 +182,25 @@ function Home({ theme }) {
               />
             </span>
           </div>
-
-          <BlurText
+          <div className="text-2xl mb-6" style={{ display: 'flex', alignItems: 'center', gap: '0.5em' }}>
+            <span style={{ color: isDark ? '#ffffff' : '#000000', fontWeight: 400 }}>
+              <TextType
+                text={["Engineer", "Programmer", "Team Player"]}
+                typingSpeed={100}
+                deletingSpeed={60}
+                pauseDuration={1500}
+                className="text-2xl"
+              />
+            </span>
+          </div>
+          {/* <BlurText
             text="I am a Senior Engineer at Liberty Mutual Insurance Group."
             delay={40}
             stepDuration={0.18}
             animateBy="words"
             direction="top"
             className="text-2xl mb-6"
-          />
+          /> */}
 
           {/* <BlurText
             text="Check out the work or bio to learn more about me."
