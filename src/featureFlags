@@ -1,0 +1,36 @@
+// featureFlags.js
+
+const FEATURE_FLAGS = {
+
+  // ─── MASTER SWITCH ───────────────────────────────────────────────────────────
+  // Setting this to false hides ALL tabs AND the stats bar in one toggle.
+  // Individual flags below are only respected when SHOW_HOME_HIGHLIGHTS is true.
+  SHOW_HOME_HIGHLIGHTS: false,
+
+  // ─── Stats Bar ───────────────────────────────────────────────────────────────
+  SHOW_STATS_BAR: true,
+
+  // ─── Home Page Tabs ──────────────────────────────────────────────────────────
+  TABS: {
+    ABOUT:      true,
+    PATENTS:    true,
+    RESEARCH:   true,
+    MENTORSHIP: true,
+    AWARDS:     true,
+  },
+
+  // ─── Individual Content Sections ─────────────────────────────────────────────
+  SHOW_ADPLIST_BADGE:  true,
+  SHOW_PATENT_CARDS:   true,
+  SHOW_RESEARCH_CARDS: true,
+  SHOW_AWARD_CARDS:    true,
+
+  // ─── Profile Card Fields ─────────────────────────────────────────────────────
+  PROFILE: {
+    SHOW_STATUS:  true,
+    SHOW_COMPANY: true,
+    SHOW_TITLE:   true,
+  },
+};
+
+export default FEATURE_FLAGS;
