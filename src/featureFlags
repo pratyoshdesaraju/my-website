@@ -5,7 +5,7 @@ const FEATURE_FLAGS = {
   // ─── MASTER SWITCH ───────────────────────────────────────────────────────────
   // Setting this to false hides ALL tabs AND the stats bar in one toggle.
   // Individual flags below are only respected when SHOW_HOME_HIGHLIGHTS is true.
-  SHOW_HOME_HIGHLIGHTS: true,
+  SHOW_HOME_HIGHLIGHTS: false,
 
   // ─── Stats Bar ───────────────────────────────────────────────────────────────
   SHOW_STATS_BAR: true,

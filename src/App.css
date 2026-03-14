@@ -35,6 +35,7 @@
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
+  padding-top: 1.5rem; /* ✅ OR THIS */
 }
 
 /* RIGHT: Full height profile card */
@@ -136,4 +137,12 @@
   .home-container { padding: 0 1rem; }
   .home-right-column { height: 400px; }
   .text-2xl { font-size: 1.6rem; }
+}
+
+/* Remove default paragraph/span margins inside hero */
+.home-message-content p,
+.home-message-content span,
+.home-message-content div {
+  margin-top: 0;
+  margin-bottom: 0;
 }

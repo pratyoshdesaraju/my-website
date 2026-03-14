@@ -141,8 +141,6 @@ const EmailButton = styled.button`
   }
 `;
 
-// ─── Styled Components for Home Tabs ─────────────────────────────────────────
-
 const StatBar = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -150,7 +148,9 @@ const StatBar = styled.div`
   gap: 32px;
   padding: 10px 0;
   flex-shrink: 0;
+  margin-bottom: 0.75rem; /* ✅ ADD THIS */
 `;
+
 
 const StatDivider = styled.div`
   width: 1px;
@@ -277,19 +277,26 @@ const SectionLink = styled(Link)`
 `;
 
 const Tag = styled.span`
-  background: rgba(253, 181, 21, 0.12);
-  color: #FDB515;
-  border: 1px solid rgba(253, 181, 21, 0.28);
+  background: transparent;
+  color: ${({ isDark }) => isDark ? '#ffffff' : '#1a1a1a'};
+  border: 1px solid ${({ isDark }) => isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'};
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.78rem;
   font-weight: 500;
   display: inline-block;
+  cursor: default;
+  transition: all 0.2s ease;
+  &:hover {
+    background: rgba(253, 181, 21, 0.15);
+    border-color: #FDB515;
+    color: #FDB515;
+  }
 `;
 
 const MentorBanner = styled.div`
-  background: ${({ isDark }) => isDark ? 'rgba(253,181,21,0.08)' : 'rgba(253,181,21,0.07)'};
-  border: 1px solid rgba(253, 181, 21, 0.25);
+  background: ${({ isDark }) => isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)'};
+  border: 1px solid ${({ isDark }) => isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.09)'};
   border-radius: 20px;
   padding: 28px 40px;
   text-align: center;
@@ -297,6 +304,11 @@ const MentorBanner = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  transition: all 0.2s ease;
+  &:hover {
+    border-color: rgba(253, 181, 21, 0.5);
+    background: ${({ isDark }) => isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)'};
+  }
 `;
 
 
@@ -306,17 +318,14 @@ function Home({ theme }) {
   const isDark = theme === 'dark';
   const [activeTab, setActiveTab] = useState('about');
 
-  // ── Tab list: gated by master switch AND individual flag ──────────────────
   const allTabs = [
     { id: 'about',      label: '👤 About',      enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.ABOUT      },
     { id: 'patents',    label: '📄 Patents',    enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.PATENTS    },
     { id: 'research',   label: '📰 Research',   enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.RESEARCH   },
     { id: 'mentorship', label: '🎯 Mentorship', enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.MENTORSHIP },
-    { id: 'awards',     label: '🏆 Awards',     enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.AWARDS     },
   ];
   const tabs = allTabs.filter(t => t.enabled);
 
-  // If active tab gets disabled via flags, fall back to first available
   useEffect(() => {
     if (!tabs.find(t => t.id === activeTab) && tabs.length > 0) {
       setActiveTab(tabs[0].id);
@@ -328,7 +337,26 @@ function Home({ theme }) {
 
       case 'about':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '14px',
+              background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
+              border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.09)'}`,
+              borderRadius: '20px',
+              padding: '20px',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'rgba(253, 181, 21, 0.5)';
+              e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.09)';
+              e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)';
+            }}
+          >
             <p style={{
               fontSize: '0.95rem', lineHeight: '1.75',
               color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.78)',
@@ -340,11 +368,11 @@ function Home({ theme }) {
               cutting-edge AI architecture and fraud detection.
             </p>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-              <Tag>AI / ML Engineering</Tag>
-              <Tag>InsurTech Systems</Tag>
-              <Tag>Anomaly Detection</Tag>
-              <Tag>Deep Learning</Tag>
-              <Tag>Enterprise Architecture</Tag>
+              <Tag isDark={isDark}>AI / ML Engineering</Tag>
+              <Tag isDark={isDark}>InsurTech Systems</Tag>
+              <Tag isDark={isDark}>Anomaly Detection</Tag>
+              <Tag isDark={isDark}>Deep Learning</Tag>
+              <Tag isDark={isDark}>Enterprise Architecture</Tag>
             </div>
             <SectionLink to="/bio">Read Full Bio → /bio</SectionLink>
           </div>
@@ -445,37 +473,30 @@ function Home({ theme }) {
             </p>
             <CardLink
               href="https://adplist.org/mentors/pratyosh-d"
-              target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: '0.95rem', fontWeight: 600 }}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: '0.95rem',
+                fontWeight: 600,
+                background: 'transparent',
+                border: `1px solid ${isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'}`,
+                borderRadius: '20px',
+                padding: '8px 20px',
+                color: isDark ? '#ffffff' : '#1a1a1a',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(253, 181, 21, 0.15)';
+                e.currentTarget.style.borderColor = '#FDB515';
+                e.currentTarget.style.color = '#FDB515';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
+                e.currentTarget.style.color = isDark ? '#ffffff' : '#1a1a1a';
+              }}
             >Book a Free Session on ADPList →</CardLink>
           </MentorBanner>
-        );
-
-      case 'awards':
-        return FLAGS.SHOW_AWARD_CARDS ? (
-          <CardGrid>
-            <Card isDark={isDark}>
-              <div style={{ fontSize: '1.4rem' }}>🎓</div>
-              <CardTitle isDark={isDark}>SCRS Fellow</CardTitle>
-              <CardMeta isDark={isDark}>Soft Computing Research Society · 2025</CardMeta>
-              <CardBody isDark={isDark}>
-                Recognized as a Fellow for outstanding contributions to AI and computing research.
-              </CardBody>
-            </Card>
-            <Card isDark={isDark}>
-              <div style={{ fontSize: '1.4rem' }}>⚖️</div>
-              <CardTitle isDark={isDark}>Brandon Hall HCM Excellence Awards Judge</CardTitle>
-              <CardMeta isDark={isDark}>Brandon Hall Group · 2025</CardMeta>
-              <CardBody isDark={isDark}>
-                Selected as a judge for the prestigious HCM Excellence Awards recognizing innovation
-                in human capital management technology.
-              </CardBody>
-            </Card>
-          </CardGrid>
-        ) : (
-          <p style={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)', fontSize: '0.9rem' }}>
-            Coming soon.
-          </p>
         );
 
       default:
@@ -491,42 +512,48 @@ function Home({ theme }) {
 
         {/* Hero */}
         <div className="home-hero">
-          <div className={`home-message-content ${isDark ? 'dark' : 'light'}`}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-              <BlurText
-                text="Hi there,"
-                delay={40}
-                stepDuration={0.18}
-                animateBy="words"
-                direction="top"
-                className="text-2xl"
-              />
-              <span className="wave-emoji" style={{ fontSize: '2em', marginLeft: '0.5em' }}>👋</span>
-            </div>
+  <div className={`home-message-content ${isDark ? 'dark' : 'light'}`}>
 
-            <div className="text-2xl" style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-              <span style={{ fontWeight: 400 }}>
-                <BlurText text="I am" delay={40} stepDuration={0.18} animateBy="words" direction="top" />
-              </span>
-              <span style={{ color: '#FDB515', marginLeft: '0.5em', fontWeight: 700 }}>
-                <BlurText text="Pratyosh Desaraju" delay={40} stepDuration={0.18} animateBy="words" direction="top" />
-              </span>
-            </div>
+    {/* Hi there + wave */}
+    <div style={{ display: 'flex', alignItems: 'center', marginBottom: 0, lineHeight: 1 }}>
+      <BlurText
+        text="Hi there,"
+        delay={40}
+        stepDuration={0.18}
+        animateBy="words"
+        direction="top"
+        className="text-2xl"
+      />
+      <span className="wave-emoji" style={{ fontSize: '2em', marginLeft: '0.5em' }}>👋</span>
+    </div>
 
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <TextType
-                text={["Engineer...", "Programmer...", "Team Player...", "AI Enthusiast.."]}
-                typingSpeed={100}
-                deletingSpeed={60}
-                pauseDuration={1500}
-                className="text-2xl"
-                isDark={isDark}
-              />
-            </div>
-          </div>
-        </div>
+    {/* I am Pratyosh Desaraju */}
+    <div className="text-2xl" style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', marginTop: 0, lineHeight: 1 }}>
+      <span style={{ fontWeight: 400 }}>
+        <BlurText text="I am" delay={40} stepDuration={0.18} animateBy="words" direction="top" />
+      </span>
+      <span style={{ color: '#FDB515', marginLeft: '0.5em', fontWeight: 700 }}>
+        <BlurText text="Pratyosh Desaraju" delay={40} stepDuration={0.18} animateBy="words" direction="top" />
+      </span>
+    </div>
 
-        {/* Stats + Tabs + Content — all gated by master switch */}
+    {/* TextType */}
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <TextType
+        text={["Engineer...", "Programmer...", "Team Player...", "AI Enthusiast.."]}
+        typingSpeed={100}
+        deletingSpeed={60}
+        pauseDuration={1500}
+        className="text-2xl"
+        isDark={isDark}
+      />
+    </div>
+
+  </div>
+</div>
+
+
+        {/* Stats + Tabs + Content */}
         <div className="home-tabs-section">
 
           {/* Stats Bar */}
