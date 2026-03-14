@@ -173,7 +173,7 @@ function Home({ theme }) {
 
           <div className="text-2xl mb-6" style={{ display: 'flex', alignItems: 'center', gap: '0.5em' }}>
             <TextType
-              text={["Engineer...", "Programmer...", "Team Player..."]}
+              text={["Engineer...", "Programmer...", "Team Player...", "AI Enthusiast.."]}
               typingSpeed={100}
               deletingSpeed={60}
               pauseDuration={1500}
