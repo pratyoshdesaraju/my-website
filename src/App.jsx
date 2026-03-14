@@ -164,7 +164,7 @@ function Home({ theme }) {
 
           <div className="text-2xl" style={{ display: 'flex', alignItems: 'center', marginBottom: '-0.5rem' }}>
             <span style={{ fontWeight: 400 }}>
-              <BlurText text="I am " delay={40} stepDuration={0.18} animateBy="words" direction="top" />
+              <BlurText text="I am" delay={40} stepDuration={0.18} animateBy="words" direction="top" />
             </span>
             <span style={{ color: '#FDB515', marginLeft: '0.5em', fontWeight: 600 }}>
               <BlurText text="Pratyosh Desaraju" delay={40} stepDuration={0.18} animateBy="words" direction="top" />
