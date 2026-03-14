@@ -1,3 +1,4 @@
+//ProfileCard.jsx
 import React, { useEffect, useRef, useCallback, useState } from "react";
 import "./ProfileCard.css";
 

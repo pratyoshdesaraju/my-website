@@ -1,146 +1,121 @@
-/* ProfileCard.css - FIXED Light Mode Text Visibility */
-
-:root {
-  --card-radius: 30px;
+/* ProfileCard.css - FULL HEIGHT RIGHT COLUMN */
+:root { 
+  --card-radius: 30px; 
 }
 
 .pc-card-wrapper {
   perspective: 500px;
-  transform: translate3d(0, 0, 0.1px);
-  position: relative;
-  touch-action: none;
+  height: 100%;
+  width: 100%;
+  max-width: 420px;
 }
 
-/* Shared card styles */
 .pc-card-full-bg,
 .pc-card {
-  position: relative;
-  width: 370px;
-  height: 80svh;
-  max-height: 540px;
-  border-radius: var(--card-radius), 30px;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--card-radius);
   overflow: hidden;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y, 0deg)) rotateY(var(--rotate-x, 0deg));
-  will-change: transform;
+  position: relative;
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+  will-change: transform;
 }
 
-/* Dark mode card */
+/* Dark mode */
 .pc-card-dark {
-  box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.7), 0 0 8px 2px #3d90ff;
-  border: 2px solid #FDB515;
-  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6), 0 0 12px rgba(253,181,21,0.4);
+  border: 3px solid #FDB515;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(15,15,30,0.95) 100%);
 }
 
-.pc-card-dark .pc-details-bottom h3 {
-  color: #fff;
+.pc-card-dark .pc-details-bottom h3 { 
+  color: #fff; 
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.pc-card-dark .pc-details-bottom p { 
+  color: #e0e7ff; 
+}
+.pc-card-dark .pc-company { 
+  color: #fbbf24; 
 }
 
-.pc-card-dark .pc-details-bottom p {
-  color: #cfd7ff;
-}
-
-.pc-card-dark .pc-company {
-  color: #ffd580;
-}
-
-/* Light mode card - ALL WHITE TEXT */
+/* Light mode */
 .pc-card-light {
-  box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.15), 0 0 8px 2px #FDB515;
-  border: 2px solid #333;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.12), 0 0 12px rgba(253,181,21,0.3);
+  border: 3px solid #FDB515;
+  background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.95) 100%);
+  backdrop-filter: blur(20px);
 }
 
-.pc-card-light .pc-details-bottom h3 {
-  color: #ffffff !important; /* WHITE NAME */
+.pc-card-light .pc-details-bottom h3 { 
+  color: #111 !important; 
+  text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.pc-card-light .pc-details-bottom p { 
+  color: #444 !important; 
+}
+.pc-card-light .pc-company { 
+  color: #666 !important; 
 }
 
-.pc-card-light .pc-details-bottom p {
-  color: #ffffff !important; /* WHITE TITLE */
-}
-
-.pc-card-light .pc-company {
-  color: #ffffff !important; /* WHITE COMPANY */
-}
-
-/* Bottom section (shared) */
+/* Text overlay */
 .pc-bottom-section {
   position: absolute;
-  bottom: 2.5em;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 2;
-  width: 100%;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  right: 2.5rem;
+  z-index: 3;
 }
 
 .pc-details-bottom {
-  width: 100%;
-  text-align: center;
-  margin-top: 8em; /* pushes text further down */
-  margin-bottom: 0em;
+  text-align: left;
 }
 
 .pc-details-bottom h3 {
-  font-size: 2.2em;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 0.25em;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .pc-details-bottom p {
-  font-size: 1.1em;
-  margin-bottom: 0;
-  margin-top: 0.25em;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: 0 0 0.125rem;
+  opacity: 0.9;
 }
 
 .pc-company {
-  font-size: 1em;
-  opacity: 0.86;
-  margin-top: -0.2em;
-  margin-bottom: 1.2em;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  opacity: 0.85;
+  font-weight: 600;
+  margin: 0;
 }
 
-/* REMOVE STATUS INDICATOR ENTIRELY */
+/* Status indicator */
 .pc-status-bottom {
-  display: none;
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.9;
 }
 
 .pc-status-dot {
-  display: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #10b981, #34d399);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+  animation: pulse 2s infinite;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .pc-card-full-bg,
-  .pc-card {
-    width: 96vw;
-    max-height: 450px;
-    height: 70svh;
-  }
-
-  .pc-details-bottom h3 {
-    font-size: min(4svh, 2em);
-  }
-}
-
-@media (max-width: 480px) {
-  .pc-card-full-bg,
-  .pc-card {
-    width: 98vw;
-    max-height: 340px;
-    height: 58svh;
-  }
-
-  .pc-details-bottom h3 {
-    font-size: min(3.2svh, 1.2em);
-  }
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
 }

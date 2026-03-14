@@ -1,25 +1,50 @@
-.home-2column {
+/* App.css */
+
+/* ─── TWO COLUMN LAYOUT ─────────────────────────────────────────────────────── */
+
+.home-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100vw;
-  min-height: 70vh;
-  height: 80vh;
-  padding-top: 60px;
-  gap: 32px;
+  gap: 3rem;
+  height: calc(100vh - 220px);
+  padding: 0 4rem;
+  min-height: 600px;
 }
 
-.home-message {
-  flex: 1 1 0;
-  max-width: 500px;
-  margin-left: 8vw;
-  align-self: flex-start;
+/* LEFT: Hero + Stats + Tabs stacked vertically */
+.home-left-column {
+  flex: 1;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  min-height: 370px;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
+
+/* Hero text area - fixed height */
+.home-hero {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+/* Stats + Tabs + TabContent area - fills remaining left height */
+.home-tabs-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* RIGHT: Full height profile card */
+.home-right-column {
+  flex: 0 0 380px;
+  display: flex;
+  align-items: stretch;
+}
+
+/* ─── Text ──────────────────────────────────────────────────────────────────── */
 
 .home-message-content {
   font-size: 1.3em;
@@ -27,39 +52,21 @@
   font-weight: 400;
 }
 
-/* Dark mode default */
 .home-message-content.dark {
   color: #f7f7f7;
   background: transparent;
-  padding: 24px 12px;
-  border-radius: 14px;
-  box-shadow: none;
+  padding: 12px 0;
   z-index: 1;
 }
 
-/* Light mode - TRANSPARENT BACKGROUND FOR PARTICLES */
 .home-message-content.light {
   color: #1a1a1a;
   background: transparent;
-  padding: 24px 12px;
-  border-radius: 14px;
-  box-shadow: none;
+  padding: 12px 0;
   z-index: 1;
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
 }
 
-.home-profilecard {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
-  height: 100%;
-  min-width: 370px;
-  margin-right: 8vw;
-  z-index: 6;
-}
-
-/* Text classes */
 .text-2xl {
   font-size: 2rem;
 }
@@ -75,50 +82,58 @@
 }
 
 @keyframes waveHand {
-  0% {
-    transform: rotate(0deg);
+  0%   { transform: rotate(0deg);  }
+  10%  { transform: rotate(16deg); }
+  20%  { transform: rotate(-8deg); }
+  30%  { transform: rotate(16deg); }
+  40%  { transform: rotate(-4deg); }
+  50%  { transform: rotate(16deg); }
+  60%  { transform: rotate(0deg);  }
+  100% { transform: rotate(0deg);  }
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .home-container {
+    padding: 0 2rem;
+    gap: 2rem;
   }
-  10% {
-    transform: rotate(16deg);
-  }
-  20% {
-    transform: rotate(-8deg);
-  }
-  30% {
-    transform: rotate(16deg);
-  }
-  40% {
-    transform: rotate(-4deg);
-  }
-  50% {
-    transform: rotate(16deg);
-  }
-  60% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
+  .home-right-column {
+    flex: 0 0 320px;
   }
 }
 
-/* Responsive */
 @media (max-width: 900px) {
-  .home-2column {
+  /* Stack vertically on tablet/mobile */
+  .home-container {
     flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    padding-top: 32px;
-  }
-
-  .home-message {
-    margin-left: 0;
+    height: auto;
+    padding: 0 1.5rem;
+    gap: 2rem;
     min-height: unset;
-    max-width: 570px;
-    justify-content: center;
   }
 
-  .home-profilecard {
-    margin-right: 0;
-    min-width: 0;
+  .home-left-column {
+    overflow: visible;
   }
+
+  .home-tabs-section {
+    overflow: visible;
+    min-height: 400px;
+  }
+
+  .home-right-column {
+    flex: none;
+    width: 100%;
+    max-width: 380px;
+    height: 500px;
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container { padding: 0 1rem; }
+  .home-right-column { height: 400px; }
+  .text-2xl { font-size: 1.6rem; }
 }
