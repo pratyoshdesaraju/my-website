@@ -51,14 +51,14 @@
 }
 
 .pc-card-light .pc-details-bottom h3 { 
-  color: #111 !important; 
+  color: #ffffff !important; 
   text-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .pc-card-light .pc-details-bottom p { 
-  color: #444 !important; 
+  color: #ffffff !important; 
 }
 .pc-card-light .pc-company { 
-  color: #666 !important; 
+  color: #ffffff !important; 
 }
 
 /* Text overlay */
@@ -95,27 +95,3 @@
   margin: 0;
 }
 
-/* Status indicator */
-.pc-status-bottom {
-  position: absolute;
-  top: 2rem;
-  right: 2.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  opacity: 0.9;
-}
-
-.pc-status-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, #10b981, #34d399);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.15); }
-}

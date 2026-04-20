@@ -69,12 +69,6 @@ const ProfileCardComponent = ({ avatarUrl, name = "PRATYOSH DESARAJU", title = "
             <p>{title}</p>
             <p className="pc-company">Liberty Mutual Insurance Group</p>
           </div>
-          <div>
-            <div className="pc-status-bottom">
-              <span className="pc-status-dot"></span>
-              <span>{status}</span>
-            </div>
-          </div>
         </div>
       </section>
     </div>
