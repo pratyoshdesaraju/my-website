@@ -363,7 +363,7 @@ function Home({ theme }) {
               margin: 0,
             }}>
                Senior AI/ML Engineer specializing in deep learning and intelligent anomaly detection
-              systems. Recognized among the <strong>Most Influential Mentors of 2026 Globally</strong> on
+              systems. Recognized among the <strong>100 Most Influential Mentors of 2026 Globally</strong> on
               ADPList — a community of over 35,000 experts — advising engineers and founders on
               cutting-edge AI architecture and fraud detection.
             </p>
