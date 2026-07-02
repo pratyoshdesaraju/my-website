@@ -24,7 +24,7 @@ const FEATURE_FLAGS = {
   SHOW_PATENT_CARDS:   false,
   SHOW_RESEARCH_CARDS: false,  
   SHOW_MEMBERSHIPS:   false,  
-  SHOW_AWARD_CARDS:    false,
+  SHOW_AWARD_CARDS:    false, 
 
   // ─── Profile Card Fields ─────────────────────────────────────────────────────
   PROFILE: {
