@@ -320,11 +320,12 @@ function Home({ theme }) {
 
   const allTabs = [
     { id: 'about',      label: '👤 About',      enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.ABOUT      },
-    { id: 'patents',    label: '📄 Patents',    enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.PATENTS    },
-    { id: 'research',   label: '📰 Research',   enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.RESEARCH   },
+    { id: 'patents',    label: '📄 Patents',    enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS },
+    { id: 'research',   label: '📰 Research',   enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_RESEARCH_CARDS },
     { id: 'mentorship', label: '🎯 Mentorship', enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.MENTORSHIP },
   ];
   const tabs = allTabs.filter(t => t.enabled);
+  const showPatentStat = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS;
 
   useEffect(() => {
     if (!tabs.find(t => t.id === activeTab) && tabs.length > 0) {
@@ -563,12 +564,14 @@ function Home({ theme }) {
                 <div className="stat-value">🏆 Top 1%</div>
                 <div className="stat-label">Mentor · ADPList</div>
               </StatItem>
-              <StatDivider isDark={isDark} />
-              <StatItem isDark={isDark}>
-                <div className="stat-value">📄 2</div>
-                <div className="stat-label">Patents · Germany</div>
-              </StatItem>
-              <StatDivider isDark={isDark} />
+              {showPatentStat && <StatDivider isDark={isDark} />}
+              {showPatentStat && (
+                <StatItem isDark={isDark}>
+                  <div className="stat-value">📄 2</div>
+                  <div className="stat-label">Patents · Germany</div>
+                </StatItem>
+              )}
+              {showPatentStat && <StatDivider isDark={isDark} />}
               <StatItem isDark={isDark}>
                 <div className="stat-value">⏱ 10+</div>
                 <div className="stat-label">Years · AI/ML Eng</div>

@@ -446,7 +446,6 @@ const useMobileDetection = () => {
 
 const MagicBento = ({
   textAutoHide = true,
-  enableStars = true,
   enableSpotlight = true,
   enableBorderGlow = true,
   disableAnimations = false,
@@ -455,7 +454,10 @@ const MagicBento = ({
   enableTilt = false,
   glowColor = DEFAULT_GLOW_COLOR,
   clickEffect = true,
-  enableMagnetism = true
+  enableMagnetism = true,
+  showPatents = true,
+  showResearch = true,
+  showMemberships = true,
 }) => {
   const gridRef = useRef(null);
   const isMobile = useMobileDetection();
@@ -474,59 +476,41 @@ const MagicBento = ({
       )}
 
       <BentoCardGrid gridRef={gridRef}>
-        {cardData.map((card, index) => {
-          const baseClassName = `card card--${card.area} ${textAutoHide ? 'card--text-autohide' : ''} ${enableBorderGlow ? 'card--border-glow' : ''}`;
-          const cardProps = {
-            className: baseClassName,
-            style: {
-              backgroundColor: card.color,
-              '--glow-color': glowColor
-            }
-          };
-          return (
-            <ParticleCard
-              key={index}
-              {...cardProps}
-              disableAnimations={shouldDisableAnimations}
-              particleCount={particleCount}
-              glowColor={glowColor}
-              enableTilt={enableTilt}
-              clickEffect={clickEffect}
-              enableMagnetism={enableMagnetism}
-            >
-              <div className="card__header">
-                <div className="card__label">{card.label}</div>
-              </div>
-              <div className="card__content">
-                <h2 className="card__title">{card.title}</h2>
-                {card.list ? (
-                  <ul className="card__list">
-                    {card.list.map((item, i) =>
-                      item.href ? (
-                        <li key={i}>
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ textDecoration: 'underline' }}
-                          >
-                            {item.text}
-                          </a>
-                        </li>
-                      ) : (
-                        <li key={i}>{item.text}</li>
-                      )
-                    )}
-                  </ul>
-                ) : (
-                  <p className="card__description">{card.description}</p>
-                )}
-                
-                {card.bookList && (
-                  <>
-                    <div className="card__secondary-label">{card.secondaryLabel}</div>
+        {cardData
+          .filter((card) => {
+            if (!showMemberships && card.area === 'top-right') return false;
+            if (!showResearch && card.area === 'bottom-left') return false;
+            if (!showPatents && card.area === 'bottom-right') return false;
+            return true;
+          })
+          .map((card, index) => {
+            const baseClassName = `card card--${card.area} ${textAutoHide ? 'card--text-autohide' : ''} ${enableBorderGlow ? 'card--border-glow' : ''}`;
+            const cardProps = {
+              className: baseClassName,
+              style: {
+                backgroundColor: card.color,
+                '--glow-color': glowColor
+              }
+            };
+            return (
+              <ParticleCard
+                key={index}
+                {...cardProps}
+                disableAnimations={shouldDisableAnimations}
+                particleCount={particleCount}
+                glowColor={glowColor}
+                enableTilt={enableTilt}
+                clickEffect={clickEffect}
+                enableMagnetism={enableMagnetism}
+              >
+                <div className="card__header">
+                  <div className="card__label">{card.label}</div>
+                </div>
+                <div className="card__content">
+                  <h2 className="card__title">{card.title}</h2>
+                  {card.list ? (
                     <ul className="card__list">
-                      {card.bookList.map((item, i) =>
+                      {card.list.map((item, i) =>
                         item.href ? (
                           <li key={i}>
                             <a
@@ -543,12 +527,37 @@ const MagicBento = ({
                         )
                       )}
                     </ul>
-                  </>
-                )}
-              </div>
-            </ParticleCard>
-          );
-        })}
+                  ) : (
+                    <p className="card__description">{card.description}</p>
+                  )}
+                  
+                  {card.bookList && showResearch && (
+                    <>
+                      <div className="card__secondary-label">{card.secondaryLabel}</div>
+                      <ul className="card__list">
+                        {card.bookList.map((item, i) =>
+                          item.href ? (
+                            <li key={i}>
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ textDecoration: 'underline' }}
+                              >
+                                {item.text}
+                              </a>
+                            </li>
+                          ) : (
+                            <li key={i}>{item.text}</li>
+                          )
+                        )}
+                      </ul>
+                    </>
+                  )}
+                </div>
+              </ParticleCard>
+            );
+          })}
       </BentoCardGrid>
     </>
   );

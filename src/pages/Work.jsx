@@ -1,10 +1,14 @@
 import React from 'react'
 import MagicBento from '../components/MagicBento/MagicBento.jsx'
+import FLAGS from '../featureFlags'
 import '../components/MagicBento/MagicBento.css'
 
 const Work = ({ theme }) => {
   const isDark = theme === 'dark'
   const glowColor = isDark ? '132, 0, 255' : '139, 92, 246'
+  const showPatents = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS
+  const showResearch = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_RESEARCH_CARDS
+  const showMemberships = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_MEMBERSHIPS
 
   return (
     <div style={{
@@ -46,7 +50,7 @@ const Work = ({ theme }) => {
       }}>
         <MagicBento
           textAutoHide={true}
-          enableStars={false}        
+          enableStars={false}
           enableSpotlight={true}
           enableBorderGlow={true}
           enableTilt={true}
@@ -55,6 +59,9 @@ const Work = ({ theme }) => {
           spotlightRadius={500}
           particleCount={12}
           glowColor={glowColor}
+          showPatents={showPatents}
+          showResearch={showResearch}
+          showMemberships={showMemberships}
           data-theme={theme}
         />
       </section>
