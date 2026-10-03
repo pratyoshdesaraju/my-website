@@ -15,7 +15,6 @@ import Work from './pages/Work';
 import Bio from './pages/Bio';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
-import FLAGS from './featureFlags';
 import './App.css';
 import './index.css';
 import pratyoshPic from './assets/pratyosh_desaraju.png';
@@ -318,20 +317,12 @@ function Home({ theme }) {
   const isDark = theme === 'dark';
   const [activeTab, setActiveTab] = useState('about');
 
-  const allTabs = [
-    { id: 'about',      label: '👤 About',      enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.ABOUT      },
-    { id: 'patents',    label: '📄 Patents',    enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS },
-    { id: 'research',   label: '📰 Research',   enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_RESEARCH_CARDS },
-    { id: 'mentorship', label: '🎯 Mentorship', enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.MENTORSHIP },
+  const tabs = [
+    { id: 'about',      label: '👤 About'      },
+    { id: 'patents',    label: '📄 Patents'    },
+    { id: 'research',   label: '📰 Research'   },
+    { id: 'mentorship', label: '🎯 Mentorship' },
   ];
-  const tabs = allTabs.filter(t => t.enabled);
-  const showPatentStat = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS;
-
-  useEffect(() => {
-    if (!tabs.find(t => t.id === activeTab) && tabs.length > 0) {
-      setActiveTab(tabs[0].id);
-    }
-  }, [tabs, activeTab]);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -358,18 +349,16 @@ function Home({ theme }) {
               e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)';
             }}
           >
-            {FLAGS.SHOW_ABOUT_SUMMARY && (
-              <p style={{
-                fontSize: '0.95rem', lineHeight: '1.75',
-                color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.78)',
-                margin: 0,
-              }}>
-                 Senior AI/ML Engineer specializing in deep learning and intelligent anomaly detection
-                systems. Recognized among the <strong>100 Most Influential Mentors of 2026 Globally</strong> on
-                ADPList — a community of over 35,000 experts — advising engineers and founders on
-                cutting-edge AI architecture and fraud detection.
-              </p>
-            )}
+            <p style={{
+              fontSize: '0.95rem', lineHeight: '1.75',
+              color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.78)',
+              margin: 0,
+            }}>
+               Senior AI/ML Engineer specializing in deep learning and intelligent anomaly detection
+              systems. Recognized among the <strong>100 Most Influential Mentors of 2026 Globally</strong> on
+              ADPList — a community of over 35,000 experts — advising engineers and founders on
+              cutting-edge AI architecture and fraud detection.
+            </p>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <Tag isDark={isDark}>AI / ML Engineering</Tag>
               <Tag isDark={isDark}>InsurTech Systems</Tag>
@@ -382,7 +371,7 @@ function Home({ theme }) {
         );
 
       case 'patents':
-        return FLAGS.SHOW_PATENT_CARDS ? (
+        return (
           <div>
             <CardGrid>
               <Card isDark={isDark}>
@@ -408,14 +397,10 @@ function Home({ theme }) {
             </CardGrid>
             <SectionLink to="/work" style={{ marginTop: '16px' }}>Full Patent Details → /work</SectionLink>
           </div>
-        ) : (
-          <p style={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)', fontSize: '0.9rem' }}>
-            Coming soon.
-          </p>
         );
 
       case 'research':
-        return FLAGS.SHOW_RESEARCH_CARDS ? (
+        return (
           <div>
             <CardGrid>
               <Card isDark={isDark}>
@@ -445,41 +430,29 @@ function Home({ theme }) {
             </CardGrid>
             <SectionLink to="/work" style={{ marginTop: '16px' }}>All Publications → /work</SectionLink>
           </div>
-        ) : (
-          <p style={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)', fontSize: '0.9rem' }}>
-            Coming soon.
-          </p>
         );
 
       case 'mentorship':
         return (
           <MentorBanner isDark={isDark}>
             <div style={{ fontSize: '2.8rem' }}>🎯</div>
-            {FLAGS.SHOW_MENTOR_SUMMARY && (
-              <>
-                <h2 style={{ margin: 0, fontSize: '1.3rem', color: isDark ? '#ffffff' : '#1a1a1a', fontWeight: 600 }}>
-                  I mentor engineers &amp; founders on AI architecture
-                </h2>
-                <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.65)', fontSize: '0.93rem' }}>
-                  ⭐ Rated <strong>Top 1%</strong> of 35,000+ mentors globally on ADPList
-                </p>
-              </>
-            )}
-            {FLAGS.SHOW_ADPLIST_BADGE && (
-              <a href="https://adplist.org/mentors/pratyosh-d" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="https://adplist.org/api/badge/?session=mentorship&src=pratyosh-d"
-                  alt="ADPList Top 1% Mentor Badge"
-                  style={{ height: '48px', marginTop: '4px' }}
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-              </a>
-            )}
-            {FLAGS.SHOW_MENTOR_SUMMARY && (
-              <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)', fontSize: '0.83rem' }}>
-                Topics: Fraud Detection · AI Architecture · Deep Learning · InsurTech
-              </p>
-            )}
+            <h2 style={{ margin: 0, fontSize: '1.3rem', color: isDark ? '#ffffff' : '#1a1a1a', fontWeight: 600 }}>
+              I mentor engineers &amp; founders on AI architecture
+            </h2>
+            <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.65)', fontSize: '0.93rem' }}>
+              ⭐ Rated <strong>Top 1%</strong> of 35,000+ mentors globally on ADPList
+            </p>
+            <a href="https://adplist.org/mentors/pratyosh-d" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://adplist.org/api/badge/?session=mentorship&src=pratyosh-d"
+                alt="ADPList Top 1% Mentor Badge"
+                style={{ height: '48px', marginTop: '4px' }}
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
+            </a>
+            <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)', fontSize: '0.83rem' }}>
+              Topics: Fraud Detection · AI Architecture · Deep Learning · InsurTech
+            </p>
             <CardLink
               href="https://adplist.org/mentors/pratyosh-d"
               target="_blank"
@@ -566,51 +539,41 @@ function Home({ theme }) {
         <div className="home-tabs-section">
 
           {/* Stats Bar */}
-          {FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_STATS_BAR && (
-            <StatBar>
-              {FLAGS.SHOW_MENTOR_STAT && (
-                <StatItem isDark={isDark}>
-                  <div className="stat-value">🏆 Top 1%</div>
-                  <div className="stat-label">Mentor · ADPList</div>
-                </StatItem>
-              )}
-              {FLAGS.SHOW_MENTOR_STAT && showPatentStat && <StatDivider isDark={isDark} />}
-              {showPatentStat && (
-                <StatItem isDark={isDark}>
-                  <div className="stat-value">📄 2</div>
-                  <div className="stat-label">Patents · Germany</div>
-                </StatItem>
-              )}
-              {showPatentStat && <StatDivider isDark={isDark} />}
-              <StatItem isDark={isDark}>
-                <div className="stat-value">⏱ 10+</div>
-                <div className="stat-label">Years · AI/ML Eng</div>
-              </StatItem>
-            </StatBar>
-          )}
+          <StatBar>
+            <StatItem isDark={isDark}>
+              <div className="stat-value">🏆 Top 1%</div>
+              <div className="stat-label">Mentor · ADPList</div>
+            </StatItem>
+            <StatDivider isDark={isDark} />
+            <StatItem isDark={isDark}>
+              <div className="stat-value">📄 2</div>
+              <div className="stat-label">Patents · Germany</div>
+            </StatItem>
+            <StatDivider isDark={isDark} />
+            <StatItem isDark={isDark}>
+              <div className="stat-value">⏱ 10+</div>
+              <div className="stat-label">Years · AI/ML Eng</div>
+            </StatItem>
+          </StatBar>
 
           {/* Tab Bar */}
-          {tabs.length > 0 && (
-            <TabBar>
-              {tabs.map(tab => (
-                <TabButton
-                  key={tab.id}
-                  active={activeTab === tab.id}
-                  isDark={isDark}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  {tab.label}
-                </TabButton>
-              ))}
-            </TabBar>
-          )}
+          <TabBar>
+            {tabs.map(tab => (
+              <TabButton
+                key={tab.id}
+                active={activeTab === tab.id}
+                isDark={isDark}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </TabButton>
+            ))}
+          </TabBar>
 
           {/* Tab Content */}
-          {tabs.length > 0 && (
-            <TabContent>
-              {renderContent()}
-            </TabContent>
-          )}
+          <TabContent>
+            {renderContent()}
+          </TabContent>
 
         </div>
       </div>
@@ -622,9 +585,6 @@ function Home({ theme }) {
           name="Pratyosh Desaraju"
           title="Senior Engineer"
           status="Online"
-          showStatus={FLAGS.PROFILE.SHOW_STATUS}
-          showCompany={FLAGS.PROFILE.SHOW_COMPANY}
-          showTitle={FLAGS.PROFILE.SHOW_TITLE}
         />
       </div>
 
