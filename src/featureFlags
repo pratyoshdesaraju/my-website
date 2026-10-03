@@ -9,7 +9,7 @@ const FEATURE_FLAGS = {
 
   // ─── Stats Bar ───────────────────────────────────────────────────────────────
   SHOW_STATS_BAR: true,
-  SHOW_MENTOR_STAT: false,  // "Top 1% Mentor · ADPList" stat
+  SHOW_MENTOR_STAT: true,  // "Top 1% Mentor · ADPList" stat
 
   // ─── Home Page Tabs ──────────────────────────────────────────────────────────
   TABS: {
@@ -21,13 +21,13 @@ const FEATURE_FLAGS = {
   },
 
   // ─── Individual Content Sections ─────────────────────────────────────────────
-  SHOW_ABOUT_SUMMARY:  false,  // Home > About tab intro paragraph
-  SHOW_MENTOR_SUMMARY: false,  // Home > Mentorship tab heading, rating, and topics
-  SHOW_ADPLIST_BADGE:  false,
-  SHOW_PATENT_CARDS:   false,
-  SHOW_RESEARCH_CARDS: false,  
-  SHOW_MEMBERSHIPS:   false,  
-  SHOW_AWARD_CARDS:    false, 
+  SHOW_ABOUT_SUMMARY:  true,  // Home > About tab intro paragraph
+  SHOW_MENTOR_SUMMARY: true,  // Home > Mentorship tab heading, rating, and topics
+  SHOW_ADPLIST_BADGE:  true,
+  SHOW_PATENT_CARDS:   true,
+  SHOW_RESEARCH_CARDS: true,  
+  SHOW_MEMBERSHIPS:   true,  
+  SHOW_AWARD_CARDS:    true, 
 
   // ─── Profile Card Fields ─────────────────────────────────────────────────────
   PROFILE: {
