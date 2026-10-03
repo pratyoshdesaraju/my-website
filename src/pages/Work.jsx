@@ -56,9 +56,9 @@ const Work = ({ theme }) => {
           spotlightRadius={500}
           particleCount={12}
           glowColor={glowColor}
-          showMemberships={!FLAGS.HIDE_MEMBERSHIPS_BOX}
-          showResearch={!FLAGS.HIDE_RESEARCH_PAPERS_BOX}
-          showPatents={!FLAGS.HIDE_PATENTS_BOOK_BOX}
+          showMemberships={FLAGS.SHOW_MEMBERSHIPS_BOX}
+          showResearch={FLAGS.SHOW_RESEARCH_PAPERS_BOX}
+          showPatents={FLAGS.SHOW_PATENTS_BOOK_BOX}
           data-theme={theme}
         />
       </section>

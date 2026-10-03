@@ -319,18 +319,18 @@ function Home({ theme }) {
   const [activeTab, setActiveTab] = useState('about');
 
   const tabs = [
-    { id: 'about',      label: '👤 About',      hidden: FLAGS.HIDE_ABOUT_TAB      },
-    { id: 'patents',    label: '📄 Patents',    hidden: FLAGS.HIDE_PATENTS_TAB    },
-    { id: 'research',   label: '📰 Research',   hidden: FLAGS.HIDE_RESEARCH_TAB   },
-    { id: 'mentorship', label: '🎯 Mentorship', hidden: FLAGS.HIDE_MENTORSHIP_TAB },
+    { id: 'about',      label: '👤 About',      hidden: !FLAGS.SHOW_ABOUT_TAB      },
+    { id: 'patents',    label: '📄 Patents',    hidden: !FLAGS.SHOW_PATENTS_TAB    },
+    { id: 'research',   label: '📰 Research',   hidden: !FLAGS.SHOW_RESEARCH_TAB   },
+    { id: 'mentorship', label: '🎯 Mentorship', hidden: !FLAGS.SHOW_MENTORSHIP_TAB },
   ].filter(tab => !tab.hidden);
 
   // Fall back to the first visible tab if the selected one is hidden
   const currentTab = tabs.some(tab => tab.id === activeTab) ? activeTab : tabs[0]?.id;
 
   const stats = [
-    { id: 'mentor',  value: '🏆 Top 1%', label: 'Mentor · ADPList',  hidden: FLAGS.HIDE_MENTOR_STAT },
-    { id: 'patents', value: '📄 2',      label: 'Patents · Germany', hidden: FLAGS.HIDE_PATENT_STAT },
+    { id: 'mentor',  value: '🏆 Top 1%', label: 'Mentor · ADPList',  hidden: !FLAGS.SHOW_MENTOR_STAT },
+    { id: 'patents', value: '📄 2',      label: 'Patents · Germany', hidden: !FLAGS.SHOW_PATENT_STAT },
     { id: 'years',   value: '⏱ 10+',    label: 'Years · AI/ML Eng'  },
   ].filter(stat => !stat.hidden);
 
