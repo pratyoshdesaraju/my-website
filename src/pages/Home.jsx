@@ -37,7 +37,7 @@ export default function Home() {
             <Link to="/work" className="home-cta">
               <span className="home-cta-text">
                 <span>View my work</span>
-                <span className="home-cta-sub">Papers, patents, book</span>
+                <span className="home-cta-sub">Papers, utility models, book</span>
               </span>
               <span className="home-cta-arrow" aria-hidden="true">
                 <FiArrowRight />
@@ -86,7 +86,7 @@ export default function Home() {
           {FLAGS.SHOW_HOME_PATENTS && utilityModels.length > 0 && (
             <li className="callout-cell">
               <p className="eyebrow">
-                Patents<span className="wide-only"> · German utility models</span>
+                Utility Models/Patents<span className="wide-only"> · Germany (DPMA)</span>
               </p>
               <ul className="callout-list">
                 {utilityModels.map((m) => (
