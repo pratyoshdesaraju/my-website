@@ -455,12 +455,16 @@ function Home({ theme }) {
         return (
           <MentorBanner isDark={isDark}>
             <div style={{ fontSize: '2.8rem' }}>🎯</div>
-            <h2 style={{ margin: 0, fontSize: '1.3rem', color: isDark ? '#ffffff' : '#1a1a1a', fontWeight: 600 }}>
-              I mentor engineers &amp; founders on AI architecture
-            </h2>
-            <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.65)', fontSize: '0.93rem' }}>
-              ⭐ Rated <strong>Top 1%</strong> of 35,000+ mentors globally on ADPList
-            </p>
+            {FLAGS.SHOW_MENTOR_SUMMARY && (
+              <>
+                <h2 style={{ margin: 0, fontSize: '1.3rem', color: isDark ? '#ffffff' : '#1a1a1a', fontWeight: 600 }}>
+                  I mentor engineers &amp; founders on AI architecture
+                </h2>
+                <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.65)', fontSize: '0.93rem' }}>
+                  ⭐ Rated <strong>Top 1%</strong> of 35,000+ mentors globally on ADPList
+                </p>
+              </>
+            )}
             {FLAGS.SHOW_ADPLIST_BADGE && (
               <a href="https://adplist.org/mentors/pratyosh-d" target="_blank" rel="noopener noreferrer">
                 <img
@@ -471,9 +475,11 @@ function Home({ theme }) {
                 />
               </a>
             )}
-            <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)', fontSize: '0.83rem' }}>
-              Topics: Fraud Detection · AI Architecture · Deep Learning · InsurTech
-            </p>
+            {FLAGS.SHOW_MENTOR_SUMMARY && (
+              <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)', fontSize: '0.83rem' }}>
+                Topics: Fraud Detection · AI Architecture · Deep Learning · InsurTech
+              </p>
+            )}
             <CardLink
               href="https://adplist.org/mentors/pratyosh-d"
               target="_blank"
