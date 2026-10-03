@@ -568,11 +568,13 @@ function Home({ theme }) {
           {/* Stats Bar */}
           {FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_STATS_BAR && (
             <StatBar>
-              <StatItem isDark={isDark}>
-                <div className="stat-value">🏆 Top 1%</div>
-                <div className="stat-label">Mentor · ADPList</div>
-              </StatItem>
-              {showPatentStat && <StatDivider isDark={isDark} />}
+              {FLAGS.SHOW_MENTOR_STAT && (
+                <StatItem isDark={isDark}>
+                  <div className="stat-value">🏆 Top 1%</div>
+                  <div className="stat-label">Mentor · ADPList</div>
+                </StatItem>
+              )}
+              {FLAGS.SHOW_MENTOR_STAT && showPatentStat && <StatDivider isDark={isDark} />}
               {showPatentStat && (
                 <StatItem isDark={isDark}>
                   <div className="stat-value">📄 2</div>

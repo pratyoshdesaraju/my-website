@@ -9,6 +9,7 @@ const FEATURE_FLAGS = {
 
   // ─── Stats Bar ───────────────────────────────────────────────────────────────
   SHOW_STATS_BAR: true,
+  SHOW_MENTOR_STAT: false,  // "Top 1% Mentor · ADPList" stat
 
   // ─── Home Page Tabs ──────────────────────────────────────────────────────────
   TABS: {
