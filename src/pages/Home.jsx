@@ -43,9 +43,6 @@ export default function Home() {
                 <FiArrowRight />
               </span>
             </Link>
-            <Link to="/contact" className="home-secondary">
-              Get in touch
-            </Link>
           </div>
         </div>
         <div className="home-portrait">
