@@ -4,6 +4,7 @@ import FLAGS from '../featureFlags';
 import portrait from '../assets/pratyosh_desaraju.png';
 import { ExtLink } from '../components/ui';
 import Badge from '../components/Badge';
+import './Home.css';
 import { person, focusAreas, utilityModels } from '../data/profile';
 import { adplist, memberships } from '../data/highlights';
 
@@ -33,10 +34,16 @@ export default function Home() {
             </ul>
           )}
           <div className="home-actions">
-            <Link to="/work" className="btn btn-primary">
-              View work <FiArrowRight aria-hidden="true" />
+            <Link to="/work" className="home-cta">
+              <span className="home-cta-text">
+                <span>View my work</span>
+                <span className="home-cta-sub">Papers, patents, book</span>
+              </span>
+              <span className="home-cta-arrow" aria-hidden="true">
+                <FiArrowRight />
+              </span>
             </Link>
-            <Link to="/contact" className="btn btn-ghost">
+            <Link to="/contact" className="home-secondary">
               Get in touch
             </Link>
           </div>
