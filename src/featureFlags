@@ -4,23 +4,18 @@
 const FEATURE_FLAGS = {
 
   // ─── Home Page ───────────────────────────────────────────────────────────────
-  SHOW_HOME_STATS:        true,  // At-a-glance numbers under the hero
-  SHOW_HOME_MEDIA:        true,  // "Featured in" outlets
+  SHOW_HOME_FOCUS:        true,  // Focus-area chips under the headline
+  SHOW_HOME_ADPLIST:      true,  // ADPList Top 100 callout
+  SHOW_HOME_MEMBERSHIPS:  true,  // IEEE Senior Member, SCRS Fellow
+  SHOW_HOME_PATENTS:      true,  // German utility models (DPMA)
 
-  // ─── Work Page: Sections (each is one tab) ───────────────────────────────────
-  SHOW_FOCUS:             true,
-  SHOW_EXPERIENCE:        true,
-  SHOW_CONTRIBUTIONS:     true,
-  SHOW_UTILITY_MODELS:    true,
-  SHOW_PUBLICATIONS:      true,
-  SHOW_TALKS:             true,
-  SHOW_REVIEW:            true,
-  SHOW_HONORS:            true,
-  SHOW_MEDIA:             true,
-
-  // ─── Work Page: Sensitive details ────────────────────────────────────────────
-  SHOW_PRODUCTION_METRICS: true, // Liberty Mutual caching results (employer production data)
-  SHOW_TECHSOPHY:          true, // TechSophy's external use of the anomaly-detection design
+  // ─── Work Page: Boxes ────────────────────────────────────────────────────────
+  SHOW_EXPERIENCE:        true,  // Liberty Mutual, previously The Home Depot
+  SHOW_IEEE_PAPERS:       true,
+  SHOW_OTHER_PAPERS:      true,
+  SHOW_BOOK:              true,
+  SHOW_BLOG:              true,  // Medium
+  SHOW_MEMBERSHIPS:       true,
 };
 
 export default FEATURE_FLAGS;

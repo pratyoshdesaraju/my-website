@@ -3,23 +3,14 @@ import { FiArrowRight } from 'react-icons/fi';
 import FLAGS from '../featureFlags';
 import portrait from '../assets/pratyosh_desaraju.png';
 import { ExtLink } from '../components/ui';
-import { person, publications, utilityModels, review, media } from '../data/profile';
+import { person, focusAreas, utilityModels } from '../data/profile';
+import { adplist, memberships } from '../data/highlights';
 
-const ieeeCount = publications.filter((p) => p.type === 'ieee').length;
-const reviewCount = review.reduce((sum, r) => sum + (r.count || 0), 0);
-
-const STATS = [
-  { value: String(person.yearsExperience), label: 'years building enterprise systems', short: 'years in industry' },
-  {
-    value: String(publications.length + 1),
-    label: `publications, including a book and ${ieeeCount} IEEE papers`,
-    short: 'publications',
-  },
-  { value: String(utilityModels.length), label: 'registered utility models in Germany', short: 'German utility models' },
-  { value: String(reviewCount), label: 'journal manuscripts peer-reviewed', short: 'manuscripts reviewed' },
-];
+const niche = person.field.charAt(0).toUpperCase() + person.field.slice(1);
 
 export default function Home() {
+  const showCallouts = FLAGS.SHOW_HOME_ADPLIST || FLAGS.SHOW_HOME_MEMBERSHIPS || FLAGS.SHOW_HOME_PATENTS;
+
   return (
     <div className="screen home">
       <section className="home-hero" aria-labelledby="home-title">
@@ -30,13 +21,22 @@ export default function Home() {
           <h1 id="home-title" className="home-title">
             {person.name}
           </h1>
-          <p className="home-lead">{person.headline}</p>
+          <p className="home-niche">{niche}</p>
+          {FLAGS.SHOW_HOME_FOCUS && (
+            <ul className="home-focus" aria-label="Areas of expertise">
+              {focusAreas.map((f) => (
+                <li key={f.title} className="tag">
+                  {f.title}
+                </li>
+              ))}
+            </ul>
+          )}
           <div className="home-actions">
             <Link to="/work" className="btn btn-primary">
               View work <FiArrowRight aria-hidden="true" />
             </Link>
-            <Link to="/bio" className="btn btn-ghost">
-              Read bio
+            <Link to="/contact" className="btn btn-ghost">
+              Get in touch
             </Link>
           </div>
         </div>
@@ -45,33 +45,54 @@ export default function Home() {
         </figure>
       </section>
 
-      {FLAGS.SHOW_HOME_STATS && (
-        <dl className="home-stats" aria-label="At a glance">
-          {STATS.map((s) => (
-            <div key={s.label} className="home-stat">
-              <dt>
-                <span className="stat-long">{s.label}</span>
-                <span className="stat-short">{s.short}</span>
-              </dt>
-              <dd>{s.value}</dd>
-            </div>
-          ))}
-        </dl>
-      )}
-
-      {FLAGS.SHOW_HOME_MEDIA && (
-        <section className="home-outlets" aria-labelledby="featured-title">
-          <h2 id="featured-title" className="eyebrow">
-            Featured in
-          </h2>
-          <ul>
-            {media.map((m) => (
-              <li key={m.href}>
-                <ExtLink href={m.href}>{m.outlet}</ExtLink>
-              </li>
-            ))}
-          </ul>
-        </section>
+      {showCallouts && (
+        <ul className="home-callouts" aria-label="Recognition">
+          {FLAGS.SHOW_HOME_ADPLIST && adplist && (
+            <li className="callout-cell">
+              <p className="eyebrow">
+                Recognition<span className="wide-only"> · {adplist.year}</span>
+              </p>
+              <p className="callout-title">
+                <a href={adplist.href} target="_blank" rel="noopener noreferrer">
+                  ADPList Top 100 mentors
+                </a>
+              </p>
+              <p className="callout-text">One of 100 mentors recognized globally.</p>
+              <ExtLink href={adplist.href}>ADPList profile</ExtLink>
+            </li>
+          )}
+          {FLAGS.SHOW_HOME_MEMBERSHIPS && memberships.length > 0 && (
+            <li className="callout-cell">
+              <p className="eyebrow">Memberships</p>
+              <ul className="callout-list">
+                {memberships.map((m) => (
+                  <li key={m.title}>
+                    <ExtLink href={m.href}>
+                      {m.org === 'IEEE' ? 'IEEE' : 'SCRS'} {m.title}
+                    </ExtLink>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )}
+          {FLAGS.SHOW_HOME_PATENTS && utilityModels.length > 0 && (
+            <li className="callout-cell">
+              <p className="eyebrow">
+                Patents<span className="wide-only"> · German utility models</span>
+              </p>
+              <ul className="callout-list">
+                {utilityModels.map((m) => (
+                  <li key={m.number}>
+                    <ExtLink href={m.href}>
+                      <span className="patent-title">{m.title}</span>
+                      <span className="patent-number">{m.number}</span>
+                    </ExtLink>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )}
+        </ul>
       )}
     </div>
   );

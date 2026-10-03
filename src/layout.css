@@ -80,7 +80,7 @@ main {
     justify-content: center;
   }
 }
-@media (max-height: 560px) {
+@media (max-height: 560px), (max-width: 760px) and (max-height: 600px) {
   .site-footer {
     display: none;
   }
@@ -119,27 +119,34 @@ main {
 }
 .home-hero {
   display: grid;
+  flex: none;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: clamp(20px, 5vw, 64px);
-  min-height: 0;
 }
 .home-copy {
   display: grid;
-  gap: clamp(10px, 2.2vh, 22px);
+  gap: clamp(10px, 2.2vh, 20px);
   justify-items: start;
 }
 .home-title {
-  font-size: clamp(2rem, min(8vw, 9vh), 5.25rem);
+  font-size: clamp(2rem, min(8vw, 8vh), 5.25rem);
   font-weight: 750;
   line-height: 1.02;
   letter-spacing: -0.035em;
 }
-.home-lead {
-  max-width: 48ch;
-  color: var(--muted);
-  font-size: clamp(0.95rem, min(2.2vw, 2.4vh), 1.25rem);
-  line-height: 1.55;
+.home-niche {
+  max-width: 30ch;
+  font-size: clamp(1.1rem, min(2.8vw, 3.2vh), 1.75rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+.home-focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
 }
 .home-actions {
   display: flex;
@@ -155,64 +162,61 @@ main {
   border-radius: 22px;
   box-shadow: var(--shadow);
 }
-.home-stats {
+.home-callouts {
   display: grid;
   flex: none;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-}
-.home-stat {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  gap: 4px;
-  padding: clamp(10px, 2vh, 20px) clamp(12px, 2vw, 22px);
-  border-left: 1px solid var(--border);
-}
-.home-stat:first-child {
-  border-left: 0;
-}
-.home-stat dd {
-  font-size: clamp(1.4rem, min(3.4vw, 4.6vh), 2.3rem);
-  font-weight: 750;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-}
-.home-stat dt {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.35;
-}
-.stat-short {
-  display: none;
-}
-.home-outlets {
-  display: flex;
-  flex: none;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 20px;
-}
-.home-outlets h2 {
-  margin: 0;
-}
-.home-outlets ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 18px;
   list-style: none;
 }
-.home-outlets .ext-link {
-  color: var(--muted);
-  font-size: 14.5px;
-  font-weight: 600;
-  text-decoration: none;
+.callout-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  padding: clamp(12px, 2.2vh, 22px) clamp(14px, 2vw, 22px);
+  border-left: 1px solid var(--border);
 }
-.home-outlets .ext-link:hover {
+.callout-cell:first-child {
+  border-left: 0;
+}
+.callout-title {
+  font-size: clamp(1.05rem, 2.4vh, 1.35rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.callout-text {
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.callout-list {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+}
+.callout-list li {
+  display: grid;
+  gap: 1px;
+}
+.callout-list .ext-link,
+.callout-cell > .ext-link {
+  font-size: 14px;
+}
+.callout-list .ext-link {
   color: var(--text);
+  font-weight: 600;
+}
+.patent-number {
+  display: block;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 400;
 }
 @media (max-width: 760px) {
   .home {
@@ -225,57 +229,59 @@ main {
     order: -1;
   }
   .home-portrait img {
-    width: clamp(64px, 13vh, 120px);
+    width: clamp(64px, 12vh, 112px);
     border-radius: 18px;
   }
-  .home-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .home-callouts {
+    grid-auto-flow: row;
   }
-  .home-stat:nth-child(3) {
+  .callout-cell {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 2px 12px;
+    align-items: baseline;
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
     border-left: 0;
   }
-  .home-stat:nth-child(n + 3) {
-    border-top: 1px solid var(--border);
+  .callout-cell:first-child {
+    border-top: 0;
   }
-  .stat-long {
+  .callout-cell > .eyebrow {
+    grid-row: span 3;
+    font-size: 10.5px;
+  }
+  .callout-title {
+    font-size: 15px;
+  }
+  .callout-text,
+  .patent-title,
+  .wide-only {
     display: none;
   }
-  .stat-short {
+  .patent-number {
     display: inline;
+    color: var(--text);
+    font-size: 12.5px;
+    font-weight: 600;
   }
-  .home-outlets .ext-link {
+  .callout-list {
+    gap: 2px;
+  }
+  .callout-list .ext-link,
+  .callout-cell > .ext-link {
     font-size: 13.5px;
   }
 }
-@media (max-width: 760px) and (max-height: 700px) {
-  .home-outlets {
+@media (max-width: 760px) and (max-height: 920px) {
+  .home-focus {
     display: none;
-  }
-  .home-lead {
-    font-size: 0.92rem;
   }
 }
-@media (max-height: 520px) {
-  .home-outlets {
+@media (max-width: 760px) and (max-height: 700px) {
+  .home-portrait,
+  .home-copy > .eyebrow {
     display: none;
-  }
-  .home-portrait img {
-    width: clamp(96px, 34vh, 180px);
-  }
-  .stat-long {
-    display: none;
-  }
-  .stat-short {
-    display: inline;
-  }
-  .home-stats {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-  .home-stat:nth-child(n + 3) {
-    border-top: 0;
-  }
-  .home-stat:nth-child(3) {
-    border-left: 1px solid var(--border);
   }
 }
 /* ─── Deck (tabs) ───────────────────────────────────────────────────────────── */
@@ -734,20 +740,30 @@ main {
   .home-title {
     font-size: clamp(1.8rem, 9vh, 2.6rem);
   }
-  .home-lead {
-    max-width: 62ch;
-    font-size: 0.88rem;
-    line-height: 1.45;
+  .home-niche {
+    font-size: 1.05rem;
+  }
+  .home-focus,
+  .callout-text,
+  .patent-title,
+  .wide-only {
+    display: none;
+  }
+  .patent-number {
+    color: var(--text);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+  .callout-cell {
+    gap: 3px;
+    padding: 8px 12px;
+  }
+  .callout-title {
+    font-size: 15px;
   }
   .home-actions .btn {
     padding: 8px 14px;
     font-size: 14px;
-  }
-  .home-stat {
-    padding: 8px 12px;
-  }
-  .home-stat dd {
-    font-size: 1.3rem;
   }
   .pager .card {
     padding: 12px 14px;
@@ -780,11 +796,6 @@ main {
     font-size: 13px;
   }
 }
-@media (max-height: 420px) {
-  .home-copy > .eyebrow {
-    display: none;
-  }
-}
 /* Keep every grid child inside the screen width */
 .contact > *,
 .field,
@@ -799,10 +810,6 @@ main {
 .contact .email-link {
   min-width: 0;
   overflow-wrap: anywhere;
-}
-/* Hero never shrinks under its own content, so nothing can overlap it */
-.home-hero {
-  flex: none;
 }
 /* Landscape phones: portrait sits beside the copy, not above it */
 @media (max-height: 520px) {
@@ -820,23 +827,175 @@ main {
   flex: 1 1 260px;
   min-width: 0;
 }
-/* Small phones (e.g. iPhone SE): drop the portrait and eyebrow on the home screen */
-@media (max-width: 760px) and (max-height: 620px) {
-  .home-portrait,
-  .home-copy > .eyebrow {
+/* ─── Work boxes ────────────────────────────────────────────────────────────── */
+.box-grid {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: clamp(10px, 1.6vh, 16px);
+  min-height: 0;
+}
+.box-grid-1,
+.box-grid-2,
+.box-grid-4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 1000px) {
+  .box-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.box {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(12px, 2vh, 20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.box-head {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.box-head h2 {
+  margin: 0;
+}
+.box-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+.box .pager {
+  border-radius: 0;
+}
+.box-title {
+  font-size: 16px;
+  line-height: 1.35;
+}
+.job {
+  display: grid;
+  gap: 2px;
+}
+.job-company {
+  font-weight: 650;
+}
+.pager .job-company {
+  font-size: 16px;
+}
+.job-role {
+  color: var(--muted);
+}
+.paper {
+  display: grid;
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pager .paper:first-child,
+.pager-col > .pager-item:first-child .paper {
+  padding-top: 0;
+}
+.paper-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.paper-title .ext-link {
+  display: inline;
+  color: var(--text);
+}
+.paper-title .ext-link:hover {
+  color: var(--accent-strong);
+}
+.paper-title .ext-icon {
+  display: inline;
+  margin-left: 4px;
+  vertical-align: -2px;
+  color: var(--muted);
+}
+.blog-link {
+  font-size: 15px;
+  font-weight: 600;
+}
+.membership {
+  display: grid;
+  gap: 3px;
+  justify-items: start;
+}
+.deck-panel > .box {
+  flex: 1;
+}
+/* Compact home callouts on phones: one line per callout where possible */
+@media (max-width: 760px), (max-height: 520px) {
+  .callout-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 14px;
+  }
+  .callout-list li {
+    display: inline;
+  }
+}
+@media (max-width: 760px) and (max-height: 640px) {
+  .home-title {
+    font-size: 1.75rem;
+  }
+  .home-niche {
+    font-size: 1rem;
+  }
+  .home-copy {
+    gap: 10px;
+  }
+  .callout-cell > .ext-link {
     display: none;
   }
-  .home-title {
-    font-size: 1.9rem;
-  }
-  .home-lead {
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-  .home-stat {
+  .callout-cell {
     padding: 8px 12px;
   }
-  .home-stat dd {
-    font-size: 1.35rem;
+}
+@media (max-height: 520px) {
+  .callout-cell > .ext-link {
+    display: none;
+  }
+}
+.callout-title a {
+  text-decoration: none;
+}
+.callout-list .ext-link {
+  display: inline;
+}
+.callout-list .ext-icon {
+  display: inline;
+  margin-left: 4px;
+  vertical-align: -2px;
+}
+.patent-number {
+  white-space: nowrap;
+}
+@media (max-width: 760px) and (max-height: 600px) {
+  .home-title {
+    font-size: 1.6rem;
+  }
+  .home-niche {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 760px) and (max-height: 600px) {
+  .home-actions .btn {
+    padding: 9px 15px;
+    font-size: 14px;
+  }
+  .callout-cell {
+    padding: 7px 12px;
   }
 }
