@@ -358,16 +358,18 @@ function Home({ theme }) {
               e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)';
             }}
           >
-            <p style={{
-              fontSize: '0.95rem', lineHeight: '1.75',
-              color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.78)',
-              margin: 0,
-            }}>
-               Senior AI/ML Engineer specializing in deep learning and intelligent anomaly detection
-              systems. Recognized among the <strong>100 Most Influential Mentors of 2026 Globally</strong> on
-              ADPList — a community of over 35,000 experts — advising engineers and founders on
-              cutting-edge AI architecture and fraud detection.
-            </p>
+            {FLAGS.SHOW_ABOUT_SUMMARY && (
+              <p style={{
+                fontSize: '0.95rem', lineHeight: '1.75',
+                color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.78)',
+                margin: 0,
+              }}>
+                 Senior AI/ML Engineer specializing in deep learning and intelligent anomaly detection
+                systems. Recognized among the <strong>100 Most Influential Mentors of 2026 Globally</strong> on
+                ADPList — a community of over 35,000 experts — advising engineers and founders on
+                cutting-edge AI architecture and fraud detection.
+              </p>
+            )}
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <Tag isDark={isDark}>AI / ML Engineering</Tag>
               <Tag isDark={isDark}>InsurTech Systems</Tag>

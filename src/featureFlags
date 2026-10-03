@@ -20,6 +20,7 @@ const FEATURE_FLAGS = {
   },
 
   // ─── Individual Content Sections ─────────────────────────────────────────────
+  SHOW_ABOUT_SUMMARY:  false,  // Home > About tab intro paragraph
   SHOW_ADPLIST_BADGE:  false,
   SHOW_PATENT_CARDS:   false,
   SHOW_RESEARCH_CARDS: false,  
