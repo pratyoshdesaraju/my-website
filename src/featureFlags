@@ -1,6 +1,22 @@
 // featureFlags.js
+// Each flag hides its section when set to true. false = visible.
 
 const FEATURE_FLAGS = {
+
+  // ─── Home Page: Stats Bar ────────────────────────────────────────────────────
+  HIDE_MENTOR_STAT:  false,  // 🏆 Top 1% · Mentor · ADPList
+  HIDE_PATENT_STAT:  false,  // 📄 2 · Patents · Germany
+
+  // ─── Home Page: Tab Buttons ──────────────────────────────────────────────────
+  HIDE_ABOUT_TAB:       false,
+  HIDE_PATENTS_TAB:     false,
+  HIDE_RESEARCH_TAB:    false,
+  HIDE_MENTORSHIP_TAB:  false,
+
+  // ─── Work Page: Boxes ────────────────────────────────────────────────────────
+  HIDE_MEMBERSHIPS_BOX:      false,  // Memberships/Achievements
+  HIDE_RESEARCH_PAPERS_BOX:  false,  // Research Papers/Conference Papers
+  HIDE_PATENTS_BOOK_BOX:     false,  // My Patents + Book I published
 };
 
 export default FEATURE_FLAGS;

@@ -531,7 +531,7 @@ const MagicBento = ({
                     <p className="card__description">{card.description}</p>
                   )}
                   
-                  {card.bookList && showResearch && (
+                  {card.bookList && (
                     <>
                       <div className="card__secondary-label">{card.secondaryLabel}</div>
                       <ul className="card__list">

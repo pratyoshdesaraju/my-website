@@ -15,6 +15,7 @@ import Work from './pages/Work';
 import Bio from './pages/Bio';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
+import FLAGS from './featureFlags';
 import './App.css';
 import './index.css';
 import pratyoshPic from './assets/pratyosh_desaraju.png';
@@ -318,14 +319,23 @@ function Home({ theme }) {
   const [activeTab, setActiveTab] = useState('about');
 
   const tabs = [
-    { id: 'about',      label: '👤 About'      },
-    { id: 'patents',    label: '📄 Patents'    },
-    { id: 'research',   label: '📰 Research'   },
-    { id: 'mentorship', label: '🎯 Mentorship' },
-  ];
+    { id: 'about',      label: '👤 About',      hidden: FLAGS.HIDE_ABOUT_TAB      },
+    { id: 'patents',    label: '📄 Patents',    hidden: FLAGS.HIDE_PATENTS_TAB    },
+    { id: 'research',   label: '📰 Research',   hidden: FLAGS.HIDE_RESEARCH_TAB   },
+    { id: 'mentorship', label: '🎯 Mentorship', hidden: FLAGS.HIDE_MENTORSHIP_TAB },
+  ].filter(tab => !tab.hidden);
+
+  // Fall back to the first visible tab if the selected one is hidden
+  const currentTab = tabs.some(tab => tab.id === activeTab) ? activeTab : tabs[0]?.id;
+
+  const stats = [
+    { id: 'mentor',  value: '🏆 Top 1%', label: 'Mentor · ADPList',  hidden: FLAGS.HIDE_MENTOR_STAT },
+    { id: 'patents', value: '📄 2',      label: 'Patents · Germany', hidden: FLAGS.HIDE_PATENT_STAT },
+    { id: 'years',   value: '⏱ 10+',    label: 'Years · AI/ML Eng'  },
+  ].filter(stat => !stat.hidden);
 
   const renderContent = () => {
-    switch (activeTab) {
+    switch (currentTab) {
 
       case 'about':
         return (
@@ -540,40 +550,39 @@ function Home({ theme }) {
 
           {/* Stats Bar */}
           <StatBar>
-            <StatItem isDark={isDark}>
-              <div className="stat-value">🏆 Top 1%</div>
-              <div className="stat-label">Mentor · ADPList</div>
-            </StatItem>
-            <StatDivider isDark={isDark} />
-            <StatItem isDark={isDark}>
-              <div className="stat-value">📄 2</div>
-              <div className="stat-label">Patents · Germany</div>
-            </StatItem>
-            <StatDivider isDark={isDark} />
-            <StatItem isDark={isDark}>
-              <div className="stat-value">⏱ 10+</div>
-              <div className="stat-label">Years · AI/ML Eng</div>
-            </StatItem>
+            {stats.map((stat, i) => (
+              <React.Fragment key={stat.id}>
+                {i > 0 && <StatDivider isDark={isDark} />}
+                <StatItem isDark={isDark}>
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </StatItem>
+              </React.Fragment>
+            ))}
           </StatBar>
 
           {/* Tab Bar */}
-          <TabBar>
-            {tabs.map(tab => (
-              <TabButton
-                key={tab.id}
-                active={activeTab === tab.id}
-                isDark={isDark}
-                onClick={() => setActiveTab(tab.id)}
-              >
-                {tab.label}
-              </TabButton>
-            ))}
-          </TabBar>
+          {tabs.length > 0 && (
+            <TabBar>
+              {tabs.map(tab => (
+                <TabButton
+                  key={tab.id}
+                  active={currentTab === tab.id}
+                  isDark={isDark}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  {tab.label}
+                </TabButton>
+              ))}
+            </TabBar>
+          )}
 
           {/* Tab Content */}
-          <TabContent>
-            {renderContent()}
-          </TabContent>
+          {tabs.length > 0 && (
+            <TabContent>
+              {renderContent()}
+            </TabContent>
+          )}
 
         </div>
       </div>

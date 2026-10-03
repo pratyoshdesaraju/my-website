@@ -1,5 +1,6 @@
 import React from 'react'
 import MagicBento from '../components/MagicBento/MagicBento.jsx'
+import FLAGS from '../featureFlags'
 import '../components/MagicBento/MagicBento.css'
 
 const Work = ({ theme }) => {
@@ -55,6 +56,9 @@ const Work = ({ theme }) => {
           spotlightRadius={500}
           particleCount={12}
           glowColor={glowColor}
+          showMemberships={!FLAGS.HIDE_MEMBERSHIPS_BOX}
+          showResearch={!FLAGS.HIDE_RESEARCH_PAPERS_BOX}
+          showPatents={!FLAGS.HIDE_PATENTS_BOOK_BOX}
           data-theme={theme}
         />
       </section>
