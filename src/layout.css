@@ -153,15 +153,6 @@ main {
   flex-wrap: wrap;
   gap: 10px;
 }
-.home-portrait img {
-  width: clamp(120px, min(28vw, 40vh), 340px);
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
-}
 .home-callouts {
   display: grid;
   flex: none;
@@ -227,10 +218,6 @@ main {
   }
   .home-portrait {
     order: -1;
-  }
-  .home-portrait img {
-    width: clamp(64px, 12vh, 112px);
-    border-radius: 18px;
   }
   .home-callouts {
     grid-auto-flow: row;
@@ -819,9 +806,6 @@ main {
   .home-portrait {
     order: 0;
   }
-  .home-portrait img {
-    width: clamp(88px, 32vh, 170px);
-  }
 }
 .panel-bar .panel-head {
   flex: 1 1 260px;
@@ -997,5 +981,130 @@ main {
   }
   .callout-cell {
     padding: 7px 12px;
+  }
+}
+/* ─── Home badge ────────────────────────────────────────────────────────────── */
+.home-portrait {
+  --badge-w: clamp(150px, min(24vw, 34vh), 300px);
+}
+.badge-wrap {
+  width: var(--badge-w);
+  margin: 0;
+  perspective: 500px;
+}
+.badge {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  container-type: inline-size;
+  aspect-ratio: 0.7;
+  border: 3px solid #fdb515;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.12), 0 0 12px rgba(253, 181, 21, 0.3);
+  transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y, 0deg)) rotateY(var(--rotate-x, 0deg));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+[data-theme='dark'] .badge {
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6), 0 0 12px rgba(253, 181, 21, 0.4);
+}
+.badge-top {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  height: 15cqw;
+  padding: 0 6cqw;
+  background: #fdb515;
+}
+.badge-slot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26cqw;
+  height: 4.5cqw;
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%);
+}
+.badge-mark {
+  color: #17171c;
+  font-size: 6cqw;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.badge-photo {
+  flex: 1;
+  min-height: 0;
+  margin: 6cqw 6cqw 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.badge-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+.badge-id {
+  display: grid;
+  flex: none;
+  gap: 1.5cqw;
+  padding: 5cqw 6cqw 6cqw;
+  text-align: center;
+}
+.badge-name {
+  overflow: hidden;
+  color: var(--text);
+  font-size: 8.2cqw;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.badge-title {
+  overflow: hidden;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 4.6cqw;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge-code {
+  height: 5cqw;
+  margin: 1cqw 14cqw 0;
+  opacity: 0.55;
+  background: repeating-linear-gradient(90deg, var(--text) 0 2px, transparent 2px 4px, var(--text) 4px 5px, transparent 5px 8px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .badge {
+    transform: none;
+    transition: none;
+  }
+}
+@media (max-width: 760px) {
+  .home-portrait {
+    --badge-w: clamp(96px, 17vh, 150px);
+  }
+}
+@media (max-height: 520px) {
+  .home-portrait {
+    --badge-w: clamp(90px, 26vh, 130px);
+  }
+}
+/* Wide screens: patent number sits under its title with the link icon after it */
+@media (min-width: 761px) and (min-height: 521px) {
+  .callout-list .patent-title {
+    display: block;
+  }
+  .callout-list .patent-number {
+    display: inline;
   }
 }

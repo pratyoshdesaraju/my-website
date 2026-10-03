@@ -3,6 +3,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import FLAGS from '../featureFlags';
 import portrait from '../assets/pratyosh_desaraju.png';
 import { ExtLink } from '../components/ui';
+import Badge from '../components/Badge';
 import { person, focusAreas, utilityModels } from '../data/profile';
 import { adplist, memberships } from '../data/highlights';
 
@@ -40,9 +41,9 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <figure className="home-portrait">
-          <img src={portrait} alt={`Portrait of ${person.name}`} width="320" height="320" />
-        </figure>
+        <div className="home-portrait">
+          <Badge photo={portrait} name={person.name} title={person.title} mark="PD" />
+        </div>
       </section>
 
       {showCallouts && (
