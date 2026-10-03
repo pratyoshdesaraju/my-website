@@ -7,16 +7,34 @@ const FEATURE_FLAGS = {
   SHOW_MENTOR_STAT:  false,  // 🏆 Top 1% · Mentor · ADPList
   SHOW_PATENT_STAT:  false,  // 📄 2 · Patents · Germany
 
-  // ─── Home Page: Tab Buttons ──────────────────────────────────────────────────
-  SHOW_ABOUT_TAB:       false,
-  SHOW_PATENTS_TAB:     false,
-  SHOW_RESEARCH_TAB:    false,
-  SHOW_MENTORSHIP_TAB:  false,
+  // ─── Stats Bar ───────────────────────────────────────────────────────────────
+  SHOW_STATS_BAR: true,
+  SHOW_MENTOR_STAT: false,  // "Top 1% Mentor · ADPList" stat
 
-  // ─── Work Page: Boxes ────────────────────────────────────────────────────────
-  SHOW_MEMBERSHIPS_BOX:      false,  // Memberships/Achievements
-  SHOW_RESEARCH_PAPERS_BOX:  false,  // Research Papers/Conference Papers
-  SHOW_PATENTS_BOOK_BOX:     false,  // My Patents + Book I published
+  // ─── Home Page Tabs ──────────────────────────────────────────────────────────
+  TABS: {
+    ABOUT:      true,
+    PATENTS:    true,
+    RESEARCH:   true,
+    MENTORSHIP: true,
+    AWARDS:     true,
+  },
+
+  // ─── Individual Content Sections ─────────────────────────────────────────────
+  SHOW_ABOUT_SUMMARY:  false,  // Home > About tab intro paragraph
+  SHOW_MENTOR_SUMMARY: false,  // Home > Mentorship tab heading, rating, and topics
+  SHOW_ADPLIST_BADGE:  false,
+  SHOW_PATENT_CARDS:   false,
+  SHOW_RESEARCH_CARDS: false,  
+  SHOW_MEMBERSHIPS:   false,  
+  SHOW_AWARD_CARDS:    false, 
+
+  // ─── Profile Card Fields ─────────────────────────────────────────────────────
+  PROFILE: {
+    SHOW_STATUS:  true,
+    SHOW_COMPANY: true,
+    SHOW_TITLE:   true,
+  },
 };
 
 export default FEATURE_FLAGS;

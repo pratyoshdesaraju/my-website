@@ -359,16 +359,18 @@ function Home({ theme }) {
               e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)';
             }}
           >
-            <p style={{
-              fontSize: '0.95rem', lineHeight: '1.75',
-              color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.78)',
-              margin: 0,
-            }}>
-               Senior AI/ML Engineer specializing in deep learning and intelligent anomaly detection
-              systems. Recognized among the <strong>100 Most Influential Mentors of 2026 Globally</strong> on
-              ADPList — a community of over 35,000 experts — advising engineers and founders on
-              cutting-edge AI architecture and fraud detection.
-            </p>
+            {FLAGS.SHOW_ABOUT_SUMMARY && (
+              <p style={{
+                fontSize: '0.95rem', lineHeight: '1.75',
+                color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.78)',
+                margin: 0,
+              }}>
+                 Senior AI/ML Engineer specializing in deep learning and intelligent anomaly detection
+                systems. Recognized among the <strong>100 Most Influential Mentors of 2026 Globally</strong> on
+                ADPList — a community of over 35,000 experts — advising engineers and founders on
+                cutting-edge AI architecture and fraud detection.
+              </p>
+            )}
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <Tag isDark={isDark}>AI / ML Engineering</Tag>
               <Tag isDark={isDark}>InsurTech Systems</Tag>
@@ -446,23 +448,31 @@ function Home({ theme }) {
         return (
           <MentorBanner isDark={isDark}>
             <div style={{ fontSize: '2.8rem' }}>🎯</div>
-            <h2 style={{ margin: 0, fontSize: '1.3rem', color: isDark ? '#ffffff' : '#1a1a1a', fontWeight: 600 }}>
-              I mentor engineers &amp; founders on AI architecture
-            </h2>
-            <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.65)', fontSize: '0.93rem' }}>
-              ⭐ Rated <strong>Top 1%</strong> of 35,000+ mentors globally on ADPList
-            </p>
-            <a href="https://adplist.org/mentors/pratyosh-d" target="_blank" rel="noopener noreferrer">
-              <img
-                src="https://adplist.org/api/badge/?session=mentorship&src=pratyosh-d"
-                alt="ADPList Top 1% Mentor Badge"
-                style={{ height: '48px', marginTop: '4px' }}
-                onError={(e) => { e.target.style.display = 'none'; }}
-              />
-            </a>
-            <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)', fontSize: '0.83rem' }}>
-              Topics: Fraud Detection · AI Architecture · Deep Learning · InsurTech
-            </p>
+            {FLAGS.SHOW_MENTOR_SUMMARY && (
+              <>
+                <h2 style={{ margin: 0, fontSize: '1.3rem', color: isDark ? '#ffffff' : '#1a1a1a', fontWeight: 600 }}>
+                  I mentor engineers &amp; founders on AI architecture
+                </h2>
+                <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.65)', fontSize: '0.93rem' }}>
+                  ⭐ Rated <strong>Top 1%</strong> of 35,000+ mentors globally on ADPList
+                </p>
+              </>
+            )}
+            {FLAGS.SHOW_ADPLIST_BADGE && (
+              <a href="https://adplist.org/mentors/pratyosh-d" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="https://adplist.org/api/badge/?session=mentorship&src=pratyosh-d"
+                  alt="ADPList Top 1% Mentor Badge"
+                  style={{ height: '48px', marginTop: '4px' }}
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              </a>
+            )}
+            {FLAGS.SHOW_MENTOR_SUMMARY && (
+              <p style={{ margin: 0, color: isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)', fontSize: '0.83rem' }}>
+                Topics: Fraud Detection · AI Architecture · Deep Learning · InsurTech
+              </p>
+            )}
             <CardLink
               href="https://adplist.org/mentors/pratyosh-d"
               target="_blank"
@@ -549,10 +559,16 @@ function Home({ theme }) {
         <div className="home-tabs-section">
 
           {/* Stats Bar */}
-          <StatBar>
-            {stats.map((stat, i) => (
-              <React.Fragment key={stat.id}>
-                {i > 0 && <StatDivider isDark={isDark} />}
+          {FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_STATS_BAR && (
+            <StatBar>
+              {FLAGS.SHOW_MENTOR_STAT && (
+                <StatItem isDark={isDark}>
+                  <div className="stat-value">🏆 Top 1%</div>
+                  <div className="stat-label">Mentor · ADPList</div>
+                </StatItem>
+              )}
+              {FLAGS.SHOW_MENTOR_STAT && showPatentStat && <StatDivider isDark={isDark} />}
+              {showPatentStat && (
                 <StatItem isDark={isDark}>
                   <div className="stat-value">{stat.value}</div>
                   <div className="stat-label">{stat.label}</div>
