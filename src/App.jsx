@@ -318,23 +318,24 @@ function Home({ theme }) {
   const isDark = theme === 'dark';
   const [activeTab, setActiveTab] = useState('about');
 
-  const allTabs = [
-    { id: 'about',      label: '👤 About',      enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.ABOUT      },
-    { id: 'patents',    label: '📄 Patents',    enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS },
-    { id: 'research',   label: '📰 Research',   enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_RESEARCH_CARDS },
-    { id: 'mentorship', label: '🎯 Mentorship', enabled: FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.TABS.MENTORSHIP },
-  ];
-  const tabs = allTabs.filter(t => t.enabled);
-  const showPatentStat = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS;
+  const tabs = [
+    { id: 'about',      label: '👤 About',      hidden: !FLAGS.SHOW_ABOUT_TAB      },
+    { id: 'patents',    label: '📄 Patents',    hidden: !FLAGS.SHOW_PATENTS_TAB    },
+    { id: 'research',   label: '📰 Research',   hidden: !FLAGS.SHOW_RESEARCH_TAB   },
+    { id: 'mentorship', label: '🎯 Mentorship', hidden: !FLAGS.SHOW_MENTORSHIP_TAB },
+  ].filter(tab => !tab.hidden);
 
-  useEffect(() => {
-    if (!tabs.find(t => t.id === activeTab) && tabs.length > 0) {
-      setActiveTab(tabs[0].id);
-    }
-  }, [tabs, activeTab]);
+  // Fall back to the first visible tab if the selected one is hidden
+  const currentTab = tabs.some(tab => tab.id === activeTab) ? activeTab : tabs[0]?.id;
+
+  const stats = [
+    { id: 'mentor',  value: '🏆 Top 1%', label: 'Mentor · ADPList',  hidden: !FLAGS.SHOW_MENTOR_STAT },
+    { id: 'patents', value: '📄 2',      label: 'Patents · Germany', hidden: !FLAGS.SHOW_PATENT_STAT },
+    { id: 'years',   value: '⏱ 10+',    label: 'Years · AI/ML Eng'  },
+  ].filter(stat => !stat.hidden);
 
   const renderContent = () => {
-    switch (activeTab) {
+    switch (currentTab) {
 
       case 'about':
         return (
@@ -382,7 +383,7 @@ function Home({ theme }) {
         );
 
       case 'patents':
-        return FLAGS.SHOW_PATENT_CARDS ? (
+        return (
           <div>
             <CardGrid>
               <Card isDark={isDark}>
@@ -408,14 +409,10 @@ function Home({ theme }) {
             </CardGrid>
             <SectionLink to="/work" style={{ marginTop: '16px' }}>Full Patent Details → /work</SectionLink>
           </div>
-        ) : (
-          <p style={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)', fontSize: '0.9rem' }}>
-            Coming soon.
-          </p>
         );
 
       case 'research':
-        return FLAGS.SHOW_RESEARCH_CARDS ? (
+        return (
           <div>
             <CardGrid>
               <Card isDark={isDark}>
@@ -445,10 +442,6 @@ function Home({ theme }) {
             </CardGrid>
             <SectionLink to="/work" style={{ marginTop: '16px' }}>All Publications → /work</SectionLink>
           </div>
-        ) : (
-          <p style={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)', fontSize: '0.9rem' }}>
-            Coming soon.
-          </p>
         );
 
       case 'mentorship':
@@ -577,17 +570,12 @@ function Home({ theme }) {
               {FLAGS.SHOW_MENTOR_STAT && showPatentStat && <StatDivider isDark={isDark} />}
               {showPatentStat && (
                 <StatItem isDark={isDark}>
-                  <div className="stat-value">📄 2</div>
-                  <div className="stat-label">Patents · Germany</div>
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
                 </StatItem>
-              )}
-              {showPatentStat && <StatDivider isDark={isDark} />}
-              <StatItem isDark={isDark}>
-                <div className="stat-value">⏱ 10+</div>
-                <div className="stat-label">Years · AI/ML Eng</div>
-              </StatItem>
-            </StatBar>
-          )}
+              </React.Fragment>
+            ))}
+          </StatBar>
 
           {/* Tab Bar */}
           {tabs.length > 0 && (
@@ -595,7 +583,7 @@ function Home({ theme }) {
               {tabs.map(tab => (
                 <TabButton
                   key={tab.id}
-                  active={activeTab === tab.id}
+                  active={currentTab === tab.id}
                   isDark={isDark}
                   onClick={() => setActiveTab(tab.id)}
                 >
@@ -622,9 +610,6 @@ function Home({ theme }) {
           name="Pratyosh Desaraju"
           title="Senior Engineer"
           status="Online"
-          showStatus={FLAGS.PROFILE.SHOW_STATUS}
-          showCompany={FLAGS.PROFILE.SHOW_COMPANY}
-          showTitle={FLAGS.PROFILE.SHOW_TITLE}
         />
       </div>
 

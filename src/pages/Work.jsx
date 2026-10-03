@@ -6,9 +6,6 @@ import '../components/MagicBento/MagicBento.css'
 const Work = ({ theme }) => {
   const isDark = theme === 'dark'
   const glowColor = isDark ? '132, 0, 255' : '139, 92, 246'
-  const showPatents = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_PATENT_CARDS
-  const showResearch = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_RESEARCH_CARDS
-  const showMemberships = FLAGS.SHOW_HOME_HIGHLIGHTS && FLAGS.SHOW_MEMBERSHIPS
 
   return (
     <div style={{
@@ -59,9 +56,9 @@ const Work = ({ theme }) => {
           spotlightRadius={500}
           particleCount={12}
           glowColor={glowColor}
-          showPatents={showPatents}
-          showResearch={showResearch}
-          showMemberships={showMemberships}
+          showMemberships={FLAGS.SHOW_MEMBERSHIPS_BOX}
+          showResearch={FLAGS.SHOW_RESEARCH_PAPERS_BOX}
+          showPatents={FLAGS.SHOW_PATENTS_BOOK_BOX}
           data-theme={theme}
         />
       </section>

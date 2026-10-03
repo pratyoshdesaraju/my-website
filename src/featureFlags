@@ -1,11 +1,11 @@
 // featureFlags.js
+// Each flag shows its section when true. Set to false to hide it.
 
 const FEATURE_FLAGS = {
 
-  // ─── MASTER SWITCH ───────────────────────────────────────────────────────────
-  // Setting this to false hides ALL tabs AND the stats bar in one toggle.
-  // Individual flags below are only respected when SHOW_HOME_HIGHLIGHTS is true.
-  SHOW_HOME_HIGHLIGHTS: true,
+  // ─── Home Page: Stats Bar ────────────────────────────────────────────────────
+  SHOW_MENTOR_STAT:  false,  // 🏆 Top 1% · Mentor · ADPList
+  SHOW_PATENT_STAT:  false,  // 📄 2 · Patents · Germany
 
   // ─── Stats Bar ───────────────────────────────────────────────────────────────
   SHOW_STATS_BAR: true,
