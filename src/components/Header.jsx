@@ -1,6 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import { FiMoon, FiSun } from 'react-icons/fi';
+import { HiOutlineSparkles, HiSparkles } from 'react-icons/hi2';
 import { person } from '../data/profile';
+import './Header.css';
 
 const NAV = [
   { to: '/work', label: 'Work' },
@@ -8,9 +10,10 @@ const NAV = [
   { to: '/contact', label: 'Contact' },
 ];
 
-export default function Header({ theme, onToggleTheme }) {
+export default function Header({ theme, onToggleTheme, particles, onToggleParticles }) {
   const isDark = theme === 'dark';
   const nextLabel = `Switch to ${isDark ? 'light' : 'dark'} mode`;
+  const particlesLabel = particles ? 'Turn off background particles' : 'Turn on background particles';
 
   return (
     <header className="site-header">
@@ -33,6 +36,19 @@ export default function Header({ theme, onToggleTheme }) {
             ))}
           </ul>
         </nav>
+        <div className="header-toggles">
+        {particles !== null && (
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={onToggleParticles}
+            aria-pressed={particles}
+            aria-label={particlesLabel}
+            title={particlesLabel}
+          >
+            {particles ? <HiSparkles aria-hidden="true" /> : <HiOutlineSparkles aria-hidden="true" />}
+          </button>
+        )}
         <button
           type="button"
           className="theme-toggle"
@@ -42,6 +58,7 @@ export default function Header({ theme, onToggleTheme }) {
         >
           {isDark ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
         </button>
+        </div>
       </div>
     </header>
   );

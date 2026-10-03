@@ -3,6 +3,9 @@
 
 const FEATURE_FLAGS = {
 
+  // ─── Site-wide ───────────────────────────────────────────────────────────────
+  SHOW_PARTICLES:         true,  // Cursor-reactive background particles and their header toggle
+
   // ─── Home Page ───────────────────────────────────────────────────────────────
   SHOW_HOME_FOCUS:        true,  // Focus-area chips under the headline
   SHOW_HOME_ADPLIST:      true,  // ADPList Top 100 callout

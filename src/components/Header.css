@@ -1,0 +1,22 @@
+/* Header toggles: particles + theme, kept together on the right */
+.header-toggles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 400px) {
+  .header-inner {
+    gap: 8px;
+  }
+  .nav-link {
+    padding: 6px 7px;
+  }
+  .header-toggles {
+    gap: 4px;
+  }
+  .header-toggles .theme-toggle {
+    width: 34px;
+    height: 34px;
+  }
+}
