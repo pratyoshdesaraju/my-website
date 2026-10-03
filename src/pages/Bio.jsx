@@ -1,71 +1,128 @@
+import { useState } from 'react';
 import portrait from '../assets/pratyosh_desaraju.png';
-import { Section } from '../components/ui';
+import Deck from '../components/Deck';
+import Pager from '../components/Pager';
+import { PageHead, PanelHead } from '../components/ui';
 import { person, bio, milestones, education, skills, mentoring } from '../data/profile';
 
-export default function Bio() {
-  return (
-    <div className="container page">
-      <header className="page-head">
-        <p className="eyebrow">Bio</p>
-        <h1>{person.name}</h1>
-        <p className="page-lead">
-          {person.title}, {person.employer} · {person.location}
-        </p>
-      </header>
+const aboutItems = [
+  { kind: 'intro' },
+  ...bio.map((text) => ({ kind: 'para', text })),
+  { kind: 'para', text: mentoring, muted: true },
+];
 
-      <div className="bio-grid">
-        <figure className="bio-portrait">
-          <img src={portrait} alt={`Portrait of ${person.name}`} width="280" height="280" />
-        </figure>
-        <div className="prose">
-          {bio.map((p) => (
-            <p key={p.slice(0, 32)}>{p}</p>
-          ))}
-          <p className="muted">{mentoring}</p>
+const backgroundItems = [
+  ...education.map((e) => ({ kind: 'edu', e })),
+  ...skills.map((s) => ({ kind: 'skill', s })),
+];
+
+function AboutItem({ item }) {
+  if (item.kind === 'intro') {
+    return (
+      <div className="x-intro">
+        <img src={portrait} alt={`Portrait of ${person.name}`} width="96" height="96" />
+        <div>
+          <p className="row-title">{person.name}</p>
+          <p className="muted small">
+            {person.title}, {person.employer}
+          </p>
+          <p className="muted small">{person.location}</p>
         </div>
       </div>
+    );
+  }
+  return <p className={`x-para${item.muted ? ' muted' : ''}`}>{item.text}</p>;
+}
 
-      <Section id="milestones" eyebrow="Timeline" title="Milestones">
-        <ol className="milestones">
-          {milestones.map((m) => (
-            <li key={m.year} className="milestone">
+function BackgroundItem({ item }) {
+  if (item.kind === 'edu') {
+    return (
+      <article className="card">
+        <span className="mono muted small">{item.e.year}</span>
+        <h3>{item.e.degree}</h3>
+        <p className="muted">{item.e.school}</p>
+      </article>
+    );
+  }
+  return (
+    <div className="x-field">
+      <p className="x-label">{item.s.group}</p>
+      <ul className="tags">
+        {item.s.items.map((t) => (
+          <li key={t} className="tag">
+            {t}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const PANELS = [
+  {
+    id: 'about',
+    label: 'About',
+    render: () => (
+      <Pager
+        label="About"
+        items={aboutItems}
+        minCol={360}
+        maxCols={2}
+        gap={16}
+        itemKey={(it, i) => `${it.kind}-${i}`}
+        renderItem={(it) => <AboutItem item={it} />}
+      />
+    ),
+  },
+  {
+    id: 'timeline',
+    label: 'Timeline',
+    render: () => (
+      <>
+        <PanelHead title="Milestones" />
+        <Pager
+          label="Milestones"
+          items={milestones}
+          minCol={340}
+          maxCols={2}
+          gap={0}
+          itemKey={(m) => m.year + m.text.slice(0, 12)}
+          renderItem={(m) => (
+            <div className="x-row">
               <span className="mono accent">{m.year}</span>
               <p>{m.text}</p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section id="education" eyebrow="Education" title="Degrees">
-        <div className="grid grid-2">
-          {education.map((e) => (
-            <article key={e.degree} className="card">
-              <span className="mono muted">{e.year}</span>
-              <h3>{e.degree}</h3>
-              <p className="muted">{e.school}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="skills" eyebrow="Toolbox" title="Technologies I work with">
-        <dl className="skills">
-          {skills.map((s) => (
-            <div key={s.group} className="skill-group">
-              <dt>{s.group}</dt>
-              <dd>
-                <ul className="tags">
-                  {s.items.map((item) => (
-                    <li key={item} className="tag">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </dd>
             </div>
-          ))}
-        </dl>
-      </Section>
+          )}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'background',
+    label: 'Education and skills',
+    render: () => (
+      <>
+        <PanelHead title="Education and skills" />
+        <Pager
+          label="Education and skills"
+          items={backgroundItems}
+          minCol={320}
+          gap={14}
+          itemKey={(it, i) => `${it.kind}-${i}`}
+          renderItem={(it) => <BackgroundItem item={it} />}
+        />
+      </>
+    ),
+  },
+];
+
+export default function Bio() {
+  const [tab, setTab] = useState('about');
+
+  return (
+    <div className="screen">
+      <PageHead eyebrow="Bio" title={person.name} lead={`${person.title}, ${person.employer} · ${person.location}`} />
+      <Deck idPrefix="bio" label="Bio sections" panels={PANELS} active={tab} onChange={setTab} />
     </div>
   );
 }

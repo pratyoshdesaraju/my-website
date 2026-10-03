@@ -1,0 +1,842 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   No-scroll layout
+   Every page fits the screen it is shown on. Content that does not fit is paged
+   (see Pager.jsx) instead of scrolled.
+   ════════════════════════════════════════════════════════════════════════════ */
+:root {
+  --header-h: 56px;
+  --pad-x: clamp(16px, 4vw, 28px);
+  --gap: clamp(10px, 2vh, 20px);
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+.site-header {
+  position: relative;
+  flex: none;
+}
+.container {
+  padding: 0 var(--pad-x);
+}
+main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.screen {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap);
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--gap) var(--pad-x);
+}
+/* Footer: one slim line */
+.site-footer {
+  flex: none;
+  margin-top: 0;
+}
+.footer-inner {
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 13px;
+}
+.footer-copy {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.footer-links {
+  flex: none;
+  flex-wrap: nowrap;
+  gap: 16px;
+}
+@media (max-width: 760px) {
+  .footer-copy {
+    display: none;
+  }
+  .footer-inner {
+    justify-content: center;
+  }
+}
+@media (max-height: 560px) {
+  .site-footer {
+    display: none;
+  }
+}
+/* Page heading */
+.page-head {
+  display: grid;
+  flex: none;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+.page-head h1 {
+  font-size: clamp(1.35rem, min(3.6vw, 4.4vh), 2.3rem);
+}
+.page-lead {
+  max-width: 80ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+@media (max-width: 760px), (max-height: 760px) {
+  .page-lead {
+    display: none;
+  }
+}
+@media (max-width: 760px) and (max-height: 700px), (max-height: 520px) {
+  .page-head .eyebrow {
+    display: none;
+  }
+}
+/* ─── Home ──────────────────────────────────────────────────────────────────── */
+.home {
+  justify-content: center;
+}
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(20px, 5vw, 64px);
+  min-height: 0;
+}
+.home-copy {
+  display: grid;
+  gap: clamp(10px, 2.2vh, 22px);
+  justify-items: start;
+}
+.home-title {
+  font-size: clamp(2rem, min(8vw, 9vh), 5.25rem);
+  font-weight: 750;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+.home-lead {
+  max-width: 48ch;
+  color: var(--muted);
+  font-size: clamp(0.95rem, min(2.2vw, 2.4vh), 1.25rem);
+  line-height: 1.55;
+}
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.home-portrait img {
+  width: clamp(120px, min(28vw, 40vh), 340px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+.home-stats {
+  display: grid;
+  flex: none;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.home-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: clamp(10px, 2vh, 20px) clamp(12px, 2vw, 22px);
+  border-left: 1px solid var(--border);
+}
+.home-stat:first-child {
+  border-left: 0;
+}
+.home-stat dd {
+  font-size: clamp(1.4rem, min(3.4vw, 4.6vh), 2.3rem);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.home-stat dt {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.stat-short {
+  display: none;
+}
+.home-outlets {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 20px;
+}
+.home-outlets h2 {
+  margin: 0;
+}
+.home-outlets ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  list-style: none;
+}
+.home-outlets .ext-link {
+  color: var(--muted);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.home-outlets .ext-link:hover {
+  color: var(--text);
+}
+@media (max-width: 760px) {
+  .home {
+    justify-content: space-evenly;
+  }
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+  .home-portrait {
+    order: -1;
+  }
+  .home-portrait img {
+    width: clamp(64px, 13vh, 120px);
+    border-radius: 18px;
+  }
+  .home-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .home-stat:nth-child(3) {
+    border-left: 0;
+  }
+  .home-stat:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+  .stat-long {
+    display: none;
+  }
+  .stat-short {
+    display: inline;
+  }
+  .home-outlets .ext-link {
+    font-size: 13.5px;
+  }
+}
+@media (max-width: 760px) and (max-height: 700px) {
+  .home-outlets {
+    display: none;
+  }
+  .home-lead {
+    font-size: 0.92rem;
+  }
+}
+@media (max-height: 520px) {
+  .home-outlets {
+    display: none;
+  }
+  .home-portrait img {
+    width: clamp(96px, 34vh, 180px);
+  }
+  .stat-long {
+    display: none;
+  }
+  .stat-short {
+    display: inline;
+  }
+  .home-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .home-stat:nth-child(n + 3) {
+    border-top: 0;
+  }
+  .home-stat:nth-child(3) {
+    border-left: 1px solid var(--border);
+  }
+}
+/* ─── Deck (tabs) ───────────────────────────────────────────────────────────── */
+.deck {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap);
+  min-height: 0;
+}
+.deck-nav {
+  flex: none;
+}
+.deck-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.deck-tab {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.15s, background-color 0.15s;
+}
+.deck-tab:hover {
+  color: var(--text);
+}
+.deck-tab[aria-selected='true'] {
+  background: var(--text);
+  color: var(--bg);
+}
+.deck-select {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.deck-select select {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+}
+.deck-count {
+  flex: none;
+}
+@media (max-width: 760px) {
+  .deck-tabs {
+    display: none;
+  }
+  .deck-select {
+    display: flex;
+  }
+}
+.deck-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  animation: fade-up 0.25s var(--ease);
+}
+.panel-head {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 14px;
+}
+.panel-head h2 {
+  font-size: clamp(1.05rem, 2.4vh, 1.3rem);
+}
+.panel-intro {
+  color: var(--muted);
+  font-size: 14px;
+}
+@media (max-height: 680px) {
+  .panel-intro {
+    display: none;
+  }
+}
+.panel-bar {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+.panel-bar .filter {
+  margin: 0;
+}
+.panel-bar .chip {
+  padding: 4px 12px;
+  font-size: 13.5px;
+}
+/* ─── Pager ─────────────────────────────────────────────────────────────────── */
+.pager {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  touch-action: pan-y;
+}
+.pager:focus-visible {
+  outline-offset: -2px;
+}
+.pager-page {
+  display: grid;
+  align-items: start;
+  animation: pager-in 0.28s var(--ease);
+}
+.pager-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.pager-item {
+  min-width: 0;
+}
+.pager-measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  pointer-events: none;
+}
+.pager-cont {
+  height: 18px;
+  overflow: hidden;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.pager-controls {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 44px;
+}
+.pager-controls .icon-btn[disabled] {
+  opacity: 0.35;
+  cursor: default;
+}
+.pager-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pager-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--border);
+  cursor: pointer;
+  transition: width 0.2s var(--ease), background-color 0.2s;
+}
+.pager-dot.is-active {
+  width: 22px;
+  background: var(--accent);
+}
+.pager-count {
+  min-width: 44px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  text-align: center;
+}
+@keyframes pager-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Compact items inside pages */
+.pager .card {
+  gap: 8px;
+  padding: clamp(14px, 2vh, 20px);
+}
+.pager .card h3 {
+  font-size: 16.5px;
+}
+.pager p {
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.pager .small,
+.pager p.small {
+  font-size: 13px;
+}
+.pager .count {
+  font-size: 32px;
+}
+.x-head {
+  display: grid;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 2px solid var(--accent);
+}
+.x-head h3 {
+  font-size: 17px;
+}
+.x-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+.pager .x-meta {
+  font-size: 12.5px;
+}
+.x-point {
+  position: relative;
+  padding-left: 16px;
+}
+.x-point::before {
+  content: '';
+  position: absolute;
+  top: 0.62em;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.x-field {
+  display: grid;
+  gap: 4px;
+}
+.x-label {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.pager .x-label {
+  font-size: 11px;
+}
+.pager .callout {
+  gap: 6px;
+  padding: 14px 16px;
+}
+.pager .metrics-row {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+.pager .metric {
+  padding: 10px 12px;
+}
+.pager .metric-value {
+  font-size: 19px;
+}
+.pager .metric-label,
+.pager .metrics-note {
+  font-size: 12.5px;
+}
+.x-callout-metrics .metric {
+  background: var(--accent-soft);
+}
+.x-pub {
+  display: grid;
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pager .pub-title {
+  font-size: 15px;
+}
+.x-pub-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+}
+.x-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.x-row-body {
+  display: grid;
+  gap: 3px;
+  justify-items: start;
+}
+.x-row-body .ext-link {
+  font-size: 13.5px;
+}
+@media (max-width: 480px) {
+  .x-row {
+    grid-template-columns: 1fr;
+  }
+}
+.x-intro {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.x-intro img {
+  width: clamp(64px, 12vh, 112px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.pager .x-para {
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+/* ─── Contact ───────────────────────────────────────────────────────────────── */
+.contact {
+  display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: var(--gap);
+  align-items: stretch;
+  min-height: 0;
+}
+.contact .card {
+  gap: 10px;
+  min-height: 0;
+  padding: clamp(14px, 2.4vh, 24px);
+}
+.contact-aside {
+  align-self: start;
+}
+.contact-profiles-title {
+  margin-top: 8px;
+}
+.profile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+.chip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  text-decoration: none;
+}
+.contact-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.contact .field {
+  gap: 4px;
+}
+.contact .field input {
+  padding: 9px 12px;
+}
+.field-grow {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+.contact .field textarea {
+  flex: 1;
+  min-height: 56px;
+  padding: 9px 12px;
+  resize: none;
+}
+@media (max-width: 760px) {
+  .contact {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .contact-aside {
+    align-self: stretch;
+  }
+  .contact .email-link {
+    font-size: 16px;
+  }
+  .contact-profiles-title {
+    margin-top: 2px;
+  }
+}
+/* ─── 404 ────────────────────────────────────────────────────────────────────── */
+.screen.notfound {
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: var(--gap);
+}
+/* ─── Small and short screens ───────────────────────────────────────────────── */
+.pager-item.is-tall {
+  overflow: hidden;
+}
+/* Phones in landscape and other short screens: keep chrome to a minimum */
+@media (max-height: 520px) {
+  :root {
+    --header-h: 48px;
+    --gap: 10px;
+  }
+  .deck-tabs {
+    display: none;
+  }
+  .deck-select {
+    display: flex;
+  }
+  .deck-select select,
+  .deck-select .icon-btn {
+    height: 34px;
+  }
+  .panel-head {
+    display: none;
+  }
+  .home-copy {
+    gap: 8px;
+  }
+  .home-title {
+    font-size: clamp(1.8rem, 9vh, 2.6rem);
+  }
+  .home-lead {
+    max-width: 62ch;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+  .home-actions .btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  .home-stat {
+    padding: 8px 12px;
+  }
+  .home-stat dd {
+    font-size: 1.3rem;
+  }
+  .pager .card {
+    padding: 12px 14px;
+  }
+}
+/* Page titles give way to content on small screens; the active nav item and
+   the section picker already say where you are. Titles stay for screen readers. */
+@media (max-height: 520px), (max-width: 760px) and (max-height: 700px) {
+  .screen:not(.home) > .page-head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+/* Contact on small screens: profile links already sit in the footer */
+@media (max-width: 760px) and (max-height: 760px) {
+  .contact-profiles-title,
+  .profile-chips {
+    display: none;
+  }
+}
+@media (max-height: 700px) {
+  #form-title {
+    display: none;
+  }
+  .contact .field label {
+    font-size: 13px;
+  }
+}
+@media (max-height: 420px) {
+  .home-copy > .eyebrow {
+    display: none;
+  }
+}
+/* Keep every grid child inside the screen width */
+.contact > *,
+.field,
+.field-row > * {
+  min-width: 0;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+}
+.contact .email-link {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* Hero never shrinks under its own content, so nothing can overlap it */
+.home-hero {
+  flex: none;
+}
+/* Landscape phones: portrait sits beside the copy, not above it */
+@media (max-height: 520px) {
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .home-portrait {
+    order: 0;
+  }
+  .home-portrait img {
+    width: clamp(88px, 32vh, 170px);
+  }
+}
+.panel-bar .panel-head {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+/* Small phones (e.g. iPhone SE): drop the portrait and eyebrow on the home screen */
+@media (max-width: 760px) and (max-height: 620px) {
+  .home-portrait,
+  .home-copy > .eyebrow {
+    display: none;
+  }
+  .home-title {
+    font-size: 1.9rem;
+  }
+  .home-lead {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .home-stat {
+    padding: 8px 12px;
+  }
+  .home-stat dd {
+    font-size: 1.35rem;
+  }
+}
