@@ -127,3 +127,18 @@
     font-size: 16px;
   }
 }
+
+/* Breathing room between the call to action and the recognition strip */
+.home-callouts {
+  margin-top: clamp(12px, 5vh, 56px);
+}
+@media (max-width: 760px) {
+  .home-callouts {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 760px) and (max-height: 700px), (max-height: 520px) {
+  .home-callouts {
+    margin-top: 4px;
+  }
+}
