@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-inner">
-        <p>
+        <p className="footer-copy">
           © {year} {person.name} · {person.title}, {person.employer}
         </p>
         <ul className="footer-links">

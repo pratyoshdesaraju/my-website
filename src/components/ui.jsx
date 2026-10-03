@@ -1,15 +1,21 @@
 import { FiArrowUpRight } from 'react-icons/fi';
 
-export function Section({ id, eyebrow, title, intro, children }) {
+export function PageHead({ eyebrow, title, lead }) {
   return (
-    <section id={id} className="section" aria-labelledby={`${id}-title`} tabIndex={-1}>
-      <header className="section-head">
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h2 id={`${id}-title`}>{title}</h2>
-        {intro && <p className="section-intro">{intro}</p>}
-      </header>
-      {children}
-    </section>
+    <header className="page-head">
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {lead && <p className="page-lead">{lead}</p>}
+    </header>
+  );
+}
+
+export function PanelHead({ title, intro }) {
+  return (
+    <header className="panel-head">
+      <h2>{title}</h2>
+      {intro && <p className="panel-intro">{intro}</p>}
+    </header>
   );
 }
 

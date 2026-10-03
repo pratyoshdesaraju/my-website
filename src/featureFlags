@@ -5,11 +5,10 @@ const FEATURE_FLAGS = {
 
   // ─── Home Page ───────────────────────────────────────────────────────────────
   SHOW_HOME_STATS:        true,  // At-a-glance numbers under the hero
-  SHOW_HOME_SELECTED:     true,  // Selected work cards
-  SHOW_HOME_RECOGNITION:  true,  // Recognition highlights
   SHOW_HOME_MEDIA:        true,  // "Featured in" outlets
 
-  // ─── Work Page: Sections ─────────────────────────────────────────────────────
+  // ─── Work Page: Sections (each is one tab) ───────────────────────────────────
+  SHOW_FOCUS:             true,
   SHOW_EXPERIENCE:        true,
   SHOW_CONTRIBUTIONS:     true,
   SHOW_UTILITY_MODELS:    true,

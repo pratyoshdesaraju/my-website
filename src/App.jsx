@@ -18,7 +18,6 @@ function RouteEffects() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const page = PAGE_TITLES[pathname];
     document.title = page ? `${page} | ${BASE_TITLE}` : `${BASE_TITLE} | Senior Software Engineer`;
   }, [pathname]);
@@ -50,20 +49,22 @@ export default function App() {
   return (
     <HashRouter>
       <RouteEffects />
-      <button type="button" className="skip-link" onClick={skipToContent}>
-        Skip to content
-      </button>
-      <Header theme={theme} onToggleTheme={toggleTheme} />
-      <main id="main" tabIndex={-1}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/bio" element={<Bio />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+      <div className="app">
+        <button type="button" className="skip-link" onClick={skipToContent}>
+          Skip to content
+        </button>
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <main id="main" tabIndex={-1}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/bio" element={<Bio />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </HashRouter>
   );
 }
