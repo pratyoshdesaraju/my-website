@@ -4,19 +4,19 @@
 const FEATURE_FLAGS = {
 
   // ─── Home Page: Stats Bar ────────────────────────────────────────────────────
-  SHOW_MENTOR_STAT:  true,  // 🏆 Top 1% · Mentor · ADPList
-  SHOW_PATENT_STAT:  true,  // 📄 2 · Patents · Germany
+  SHOW_MENTOR_STAT:  false,  // 🏆 Top 1% · Mentor · ADPList
+  SHOW_PATENT_STAT:  false,  // 📄 2 · Patents · Germany
 
   // ─── Home Page: Tab Buttons ──────────────────────────────────────────────────
-  SHOW_ABOUT_TAB:       true,
-  SHOW_PATENTS_TAB:     true,
-  SHOW_RESEARCH_TAB:    true,
-  SHOW_MENTORSHIP_TAB:  true,
+  SHOW_ABOUT_TAB:       false,
+  SHOW_PATENTS_TAB:     false,
+  SHOW_RESEARCH_TAB:    false,
+  SHOW_MENTORSHIP_TAB:  false,
 
   // ─── Work Page: Boxes ────────────────────────────────────────────────────────
-  SHOW_MEMBERSHIPS_BOX:      true,  // Memberships/Achievements
-  SHOW_RESEARCH_PAPERS_BOX:  true,  // Research Papers/Conference Papers
-  SHOW_PATENTS_BOOK_BOX:     true,  // My Patents + Book I published
+  SHOW_MEMBERSHIPS_BOX:      false,  // Memberships/Achievements
+  SHOW_RESEARCH_PAPERS_BOX:  false,  // Research Papers/Conference Papers
+  SHOW_PATENTS_BOOK_BOX:     false,  // My Patents + Book I published
 };
 
 export default FEATURE_FLAGS;
