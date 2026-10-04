@@ -4,21 +4,33 @@
 const FEATURE_FLAGS = {
 
   // ─── Site-wide ───────────────────────────────────────────────────────────────────────────────────────
-  SHOW_PARTICLES:         true,  // Cursor-reactive background particles and their header toggle
+  SHOW_PARTICLES:         false,  // Cursor-reactive background particles and their header toggle
 
   // ─── Home Page ─────────────────────────────────────────────────────────────────────────────────────
-  SHOW_HOME_FOCUS:        true,  // Focus-area chips under the headline
-  SHOW_HOME_ADPLIST:      true,  // ADPList Top 100 callout
-  SHOW_HOME_MEMBERSHIPS:  true,  // IEEE Senior Member, SCRS Fellow
-  SHOW_HOME_PATENTS:      true,  // German utility models (DPMA)
+  SHOW_HOME_NICHE:        false,  // "AI-enabled enterprise software modernization..." line
+  SHOW_HOME_CTA:          false,  // "View my work" button
+  SHOW_HOME_FOCUS:        false,  // Focus-area chips under the headline
+  SHOW_HOME_ADPLIST:      false,  // ADPList Top 100 callout
+  SHOW_HOME_MEMBERSHIPS:  false,  // IEEE Senior Member, SCRS Fellow
+  SHOW_HOME_PATENTS:      false,  // German utility models (DPMA)
 
   // ─── Work Page: Boxes ───────────────────────────────────────────────────────────────────────────────────
-  SHOW_EXPERIENCE:        true,  // Liberty Mutual, previously The Home Depot
-  SHOW_IEEE_PAPERS:       true,
-  SHOW_OTHER_PAPERS:      true,
-  SHOW_BOOK:              true,
-  SHOW_BLOG:              true,  // Medium
-  SHOW_MEMBERSHIPS:       true,
+  SHOW_EXPERIENCE:        false,  // Liberty Mutual, previously The Home Depot
+  SHOW_IEEE_PAPERS:       false,
+  SHOW_OTHER_PAPERS:      false,
+  SHOW_BOOK:              false,
+  SHOW_BLOG:              false,  // Medium
+  SHOW_MEMBERSHIPS:       false,
+
+  // ─── Bio Page: Tabs ──────────────────────────────────────────────────────────────────────────
+  SHOW_BIO_ABOUT:         false,  // Intro, bio paragraphs, mentoring note
+  SHOW_BIO_TIMELINE:      false,  // Milestones
+  SHOW_BIO_BACKGROUND:    false,  // Education and skills
+
+  // ─── Contact Page ───────────────────────────────────────────────────────────────────────
+  SHOW_CONTACT_EMAIL:     false,  // Email address with copy button
+  SHOW_CONTACT_PROFILES:  false,  // LinkedIn, Medium, ADPList, IEEE chips
+  SHOW_CONTACT_FORM:      false,  // Send a message form
 };
 
 export default FEATURE_FLAGS;
