@@ -3,22 +3,22 @@
 
 const FEATURE_FLAGS = {
 
-  // ─── Site-wide ───────────────────────────────────────────────────────────────
-  SHOW_PARTICLES:         true,  // Cursor-reactive background particles and their header toggle
+  // ─── Site-wide ─────────────────────────────────────────────────────────────────────────────
+  SHOW_PARTICLES:         false,  // Cursor-reactive background particles and their header toggle
 
-  // ─── Home Page ───────────────────────────────────────────────────────────────
-  SHOW_HOME_FOCUS:        true,  // Focus-area chips under the headline
-  SHOW_HOME_ADPLIST:      true,  // ADPList Top 100 callout
-  SHOW_HOME_MEMBERSHIPS:  true,  // IEEE Senior Member, SCRS Fellow
-  SHOW_HOME_PATENTS:      true,  // German utility models (DPMA)
+  // ─── Home Page ─────────────────────────────────────────────────────────────────────────────
+  SHOW_HOME_FOCUS:        false,  // Focus-area chips under the headline
+  SHOW_HOME_ADPLIST:      false,  // ADPList Top 100 callout
+  SHOW_HOME_MEMBERSHIPS:  false,  // IEEE Senior Member, SCRS Fellow
+  SHOW_HOME_PATENTS:      false,  // German utility models (DPMA)
 
-  // ─── Work Page: Boxes ────────────────────────────────────────────────────────
-  SHOW_EXPERIENCE:        true,  // Liberty Mutual, previously The Home Depot
-  SHOW_IEEE_PAPERS:       true,
-  SHOW_OTHER_PAPERS:      true,
-  SHOW_BOOK:              true,
-  SHOW_BLOG:              true,  // Medium
-  SHOW_MEMBERSHIPS:       true,
+  // ─── Work Page: Boxes ────────────────────────────────────────────────────────────────────────
+  SHOW_EXPERIENCE:        false,  // Liberty Mutual, previously The Home Depot
+  SHOW_IEEE_PAPERS:       false,
+  SHOW_OTHER_PAPERS:      false,
+  SHOW_BOOK:              false,
+  SHOW_BLOG:              false,  // Medium
+  SHOW_MEMBERSHIPS:       false,
 };
 
 export default FEATURE_FLAGS;
