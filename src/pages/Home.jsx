@@ -23,7 +23,7 @@ export default function Home() {
           <h1 id="home-title" className="home-title">
             {person.name}
           </h1>
-          <p className="home-niche">{niche}</p>
+          {FLAGS.SHOW_HOME_NICHE && <p className="home-niche">{niche}</p>}
           {FLAGS.SHOW_HOME_FOCUS && (
             <ul className="home-focus" aria-label="Areas of expertise">
               {focusAreas.map((f) => (
@@ -33,17 +33,19 @@ export default function Home() {
               ))}
             </ul>
           )}
-          <div className="home-actions">
-            <Link to="/work" className="home-cta">
-              <span className="home-cta-text">
-                <span>View my work</span>
-                <span className="home-cta-sub">Papers, utility models, book</span>
-              </span>
-              <span className="home-cta-arrow" aria-hidden="true">
-                <FiArrowRight />
-              </span>
-            </Link>
-          </div>
+          {FLAGS.SHOW_HOME_CTA && (
+            <div className="home-actions">
+              <Link to="/work" className="home-cta">
+                <span className="home-cta-text">
+                  <span>View my work</span>
+                  <span className="home-cta-sub">Papers, utility models, book</span>
+                </span>
+                <span className="home-cta-arrow" aria-hidden="true">
+                  <FiArrowRight />
+                </span>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="home-portrait">
           <Badge photo={portrait} name={person.name} title={person.title} mark="PD" />
