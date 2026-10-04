@@ -26,6 +26,11 @@ const FEATURE_FLAGS = {
   SHOW_BIO_ABOUT:         false,  // Intro, bio paragraphs, mentoring note
   SHOW_BIO_TIMELINE:      false,  // Milestones
   SHOW_BIO_BACKGROUND:    false,  // Education and skills
+
+  // ─── Contact Page ───────────────────────────────────────────────────────────────────────
+  SHOW_CONTACT_EMAIL:     false,  // Email address with copy button
+  SHOW_CONTACT_PROFILES:  false,  // LinkedIn, Medium, ADPList, IEEE chips
+  SHOW_CONTACT_FORM:      false,  // Send a message form
 };
 
 export default FEATURE_FLAGS;
