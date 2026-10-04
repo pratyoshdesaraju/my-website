@@ -7,6 +7,8 @@ const FEATURE_FLAGS = {
   SHOW_PARTICLES:         false,  // Cursor-reactive background particles and their header toggle
 
   // ─── Home Page ─────────────────────────────────────────────────────────────────────────────────────
+  SHOW_HOME_NICHE:        false,  // "AI-enabled enterprise software modernization..." line
+  SHOW_HOME_CTA:          false,  // "View my work" button
   SHOW_HOME_FOCUS:        false,  // Focus-area chips under the headline
   SHOW_HOME_ADPLIST:      false,  // ADPList Top 100 callout
   SHOW_HOME_MEMBERSHIPS:  false,  // IEEE Senior Member, SCRS Fellow
