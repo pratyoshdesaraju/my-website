@@ -3,20 +3,22 @@
 
 const FEATURE_FLAGS = {
 
-  // ─── Home Page: Stats Bar ────────────────────────────────────────────────────
-  SHOW_MENTOR_STAT:  false,  // 🏆 Top 1% · Mentor · ADPList
-  SHOW_PATENT_STAT:  false,  // 📄 2 · Patents · Germany
+  // ─── Site-wide ───────────────────────────────────────────────────────────────────────────────────────
+  SHOW_PARTICLES:         true,  // Cursor-reactive background particles and their header toggle
 
-  // ─── Home Page: Tab Buttons ──────────────────────────────────────────────────
-  SHOW_ABOUT_TAB:       false,
-  SHOW_PATENTS_TAB:     false,
-  SHOW_RESEARCH_TAB:    false,
-  SHOW_MENTORSHIP_TAB:  false,
+  // ─── Home Page ─────────────────────────────────────────────────────────────────────────────────────
+  SHOW_HOME_FOCUS:        true,  // Focus-area chips under the headline
+  SHOW_HOME_ADPLIST:      true,  // ADPList Top 100 callout
+  SHOW_HOME_MEMBERSHIPS:  true,  // IEEE Senior Member, SCRS Fellow
+  SHOW_HOME_PATENTS:      true,  // German utility models (DPMA)
 
-  // ─── Work Page: Boxes ────────────────────────────────────────────────────────
-  SHOW_MEMBERSHIPS_BOX:      false,  // Memberships/Achievements
-  SHOW_RESEARCH_PAPERS_BOX:  false,  // Research Papers/Conference Papers
-  SHOW_PATENTS_BOOK_BOX:     false,  // My Patents + Book I published
+  // ─── Work Page: Boxes ───────────────────────────────────────────────────────────────────────────────────
+  SHOW_EXPERIENCE:        true,  // Liberty Mutual, previously The Home Depot
+  SHOW_IEEE_PAPERS:       true,
+  SHOW_OTHER_PAPERS:      true,
+  SHOW_BOOK:              true,
+  SHOW_BLOG:              true,  // Medium
+  SHOW_MEMBERSHIPS:       true,
 };
 
 export default FEATURE_FLAGS;
