@@ -19,6 +19,11 @@ const FEATURE_FLAGS = {
   SHOW_BOOK:              false,
   SHOW_BLOG:              false,  // Medium
   SHOW_MEMBERSHIPS:       false,
+
+  // ─── Bio Page: Tabs ──────────────────────────────────────────────────────────────────────────
+  SHOW_BIO_ABOUT:         false,  // Intro, bio paragraphs, mentoring note
+  SHOW_BIO_TIMELINE:      false,  // Milestones
+  SHOW_BIO_BACKGROUND:    false,  // Education and skills
 };
 
 export default FEATURE_FLAGS;

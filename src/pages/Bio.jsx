@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import FLAGS from '../featureFlags';
 import portrait from '../assets/pratyosh_desaraju.png';
 import Deck from '../components/Deck';
 import Pager from '../components/Pager';
@@ -58,9 +59,10 @@ function BackgroundItem({ item }) {
   );
 }
 
-const PANELS = [
+const ALL_PANELS = [
   {
     id: 'about',
+    flag: 'SHOW_BIO_ABOUT',
     label: 'About',
     render: () => (
       <Pager
@@ -76,6 +78,7 @@ const PANELS = [
   },
   {
     id: 'timeline',
+    flag: 'SHOW_BIO_TIMELINE',
     label: 'Timeline',
     render: () => (
       <>
@@ -99,6 +102,7 @@ const PANELS = [
   },
   {
     id: 'background',
+    flag: 'SHOW_BIO_BACKGROUND',
     label: 'Education and skills',
     render: () => (
       <>
@@ -116,13 +120,17 @@ const PANELS = [
   },
 ];
 
+const PANELS = ALL_PANELS.filter((p) => FLAGS[p.flag]);
+
 export default function Bio() {
-  const [tab, setTab] = useState('about');
+  const [tab, setTab] = useState(PANELS[0]?.id);
 
   return (
     <div className="screen">
       <PageHead eyebrow="Bio" title={person.name} lead={`${person.title}, ${person.employer} · ${person.location}`} />
-      <Deck idPrefix="bio" label="Bio sections" panels={PANELS} active={tab} onChange={setTab} />
+      {PANELS.length > 0 && (
+        <Deck idPrefix="bio" label="Bio sections" panels={PANELS} active={tab} onChange={setTab} />
+      )}
     </div>
   );
 }
